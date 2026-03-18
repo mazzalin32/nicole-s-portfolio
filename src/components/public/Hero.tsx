@@ -1,0 +1,101 @@
+"use client";
+
+import Image from "next/image";
+import { motion } from "framer-motion";
+
+interface HeroProps {
+    headline?: string;
+    subtitle?: string;
+    ctaText?: string;
+    imageUrl?: string;
+    studentsCount?: string;
+    roleTitle?: string;
+    roleSubtitle?: string;
+}
+
+export default function Hero({
+    headline: _headline = "HI, I'm Gracious",
+    subtitle: _subtitle = "Lifestyle Influencer & Content Creator",
+    ctaText = "Work With Me",
+    imageUrl = "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=1000&fit=crop",
+    studentsCount = "500K+",
+    roleTitle: _roleTitle = "Your Style & Lifestyle Muse",
+    roleSubtitle: _roleSubtitle = "Lifestyle Influencer & Content Creator",
+}: HeroProps) {
+    return (
+        <section
+            id="home"
+            className="min-h-screen bg-[var(--color-cream)] pt-20 relative overflow-hidden"
+        >
+            <div className="max-w-7xl mx-auto px-6 py-12 lg:py-20">
+                <div className="grid lg:grid-cols-2 gap-12 items-center">
+                    {/* Left Content */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 40 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        className="space-y-8"
+                    >
+                        {/* Main Headline */}
+                        <h1 className="text-4xl md:text-5xl lg:text-7xl xl:text-8xl leading-[1.1] text-[var(--color-text-dark)]" style={{ fontFamily: "var(--font-serif)" }}>
+                            {_headline}
+                        </h1>
+
+                        {/* Role Labels */}
+                        <div className="flex flex-col sm:flex-row gap-4 sm:gap-12 text-xs tracking-[0.2em] uppercase text-[var(--color-text-dark)]">
+                            <div>
+                                <p>{_roleSubtitle}</p>
+                            </div>
+                            <div className="text-right sm:text-left">
+                                <p>{_roleTitle}</p>
+                            </div>
+                        </div>
+
+                        {/* Stats */}
+                        <div className="flex items-baseline gap-2">
+                            <span
+                                className="text-4xl md:text-5xl text-[var(--color-burgundy)]"
+                                style={{ fontFamily: "var(--font-serif)" }}
+                            >
+                                {studentsCount}
+                            </span>
+                            <div className="text-xs uppercase tracking-widest text-[var(--color-text-muted)]">
+                                <p>Followers</p>
+                                <p>Inspired</p>
+                            </div>
+                        </div>
+
+                        {/* CTA Button */}
+                        <motion.a
+                            href="#contact"
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                            className="inline-block px-8 py-4 bg-[var(--color-text-dark)] text-white text-xs tracking-[0.2em] uppercase hover:bg-[var(--color-burgundy)] transition-colors"
+                        >
+                            {ctaText}
+                        </motion.a>
+                    </motion.div>
+
+                    {/* Right - Hero Image */}
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
+                        className="relative"
+                    >
+                        <div className="relative aspect-[3/4] lg:aspect-[4/5] w-full max-w-lg mx-auto lg:ml-auto">
+                            <Image
+                                src={imageUrl}
+                                alt="Gracious - Lifestyle Influencer"
+                                fill
+                                className="object-cover object-top"
+                                priority
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                            />
+                        </div>
+                    </motion.div>
+                </div>
+            </div>
+        </section>
+    );
+}

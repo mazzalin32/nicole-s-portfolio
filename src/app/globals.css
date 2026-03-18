@@ -1,0 +1,175 @@
+@import "tailwindcss";
+
+/* Luxury Design System */
+:root {
+  /* Colors */
+  --color-cream: #FAF7F2;
+  --color-cream-dark: #F5F0E8;
+  --color-burgundy: #722F37;
+  --color-burgundy-dark: #5A252C;
+  --color-burgundy-light: #8B3A42;
+  --color-brown: #8B6914;
+  --color-brown-light: #A68A5B;
+  --color-text-dark: #1A1A1A;
+  --color-text-muted: #6B6B6B;
+
+  /* Typography */
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-script: 'Dancing Script', cursive;
+  --font-sans: 'Inter', system-ui, sans-serif;
+
+  /* Spacing */
+  --spacing-section: clamp(4rem, 10vw, 8rem);
+}
+
+.dark {
+  /* Dark Mode Colors */
+  --color-cream: #0F0F0F;
+  /* Very dark background */
+  --color-cream-dark: #1F1F1F;
+  /* Slightly lighter for cards/borders */
+  --color-burgundy: #9E4F59;
+  /* Lighter burgundy for contrast */
+  --color-burgundy-dark: #722F37;
+  /* Original burgundy as dark variant */
+  --color-burgundy-light: #B85C66;
+  --color-brown: #C4A468;
+  /* Gold/Bronze pop */
+  --color-brown-light: #D4B47B;
+  --color-text-dark: #EDEDED;
+  /* Off-white text */
+  --color-text-muted: #9CA3AF;
+  /* Muted gray */
+}
+
+.pink {
+  /* Pink Mode Colors (Baby Pink - High Contrast) */
+  --color-cream: #FFF0F5;
+  /* Lavender Blush */
+  --color-cream-dark: #FFB7C5;
+  /* Cherry Blossom Pink (Soft & Attractive) */
+  /* Cherry Blossom Pink (Darker for borders) */
+  --color-burgundy: #D1476B;
+  /* Deep Pink */
+  --color-burgundy-dark: #A32A48;
+  /* Darker Pink */
+  --color-burgundy-light: #FF69B4;
+  /* Hot Pink */
+  --color-brown: #C9667E;
+  /* Rosy Brown */
+  --color-brown-light: #E0A6B5;
+  --color-text-dark: #420815;
+  /* Very Dark Red/Brown for text visibility */
+  --color-text-muted: #8B3A4F;
+  /* Muted but readable Pink/Red */
+}
+
+/* Base styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-text-dark);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+}
+
+/* Typography utilities */
+.font-serif {
+  font-family: var(--color-font-serif);
+}
+
+.font-script {
+  font-family: var(--color-font-script);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-cream-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-burgundy);
+  border-radius: 4px;
+}
+
+/* Selection color */
+::selection {
+  background-color: var(--color-burgundy);
+  color: white;
+}
+
+/* Image reveal animation */
+@keyframes imageReveal {
+  from {
+    clip-path: inset(100% 0 0 0);
+  }
+
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.animate-image-reveal {
+  animation: imageReveal 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+
+/* Marquee animation for Values section */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+
+/* Button styles */
+.btn-primary {
+  background-color: var(--color-burgundy);
+  color: white;
+  padding: 0.875rem 2rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-burgundy-dark);
+  transform: translateY(-2px);
+}
+
+/* Luxury card styles */
+.luxury-card {
+  background-color: var(--color-burgundy);
+  color: white;
+  padding: 2rem;
+}
+
+.luxury-card h3 {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.luxury-card p {
+  font-size: 0.875rem;
+  line-height: 1.7;
+  opacity: 0.9;
+}
