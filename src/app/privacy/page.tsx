@@ -5,7 +5,12 @@ import prisma from "@/lib/prisma";
 export const dynamic = "force-dynamic";
 
 export default async function PrivacyPage() {
-    const settingsData = await prisma.siteSettings.findFirst();
+    let settingsData = null;
+    try {
+        settingsData = await prisma.siteSettings.findFirst();
+    } catch (error) {
+        console.error("Failed to load privacy page settings:", error);
+    }
 
     return (
         <main className="bg-white dark:bg-black min-h-screen flex flex-col">

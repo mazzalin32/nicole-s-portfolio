@@ -11,14 +11,25 @@ import prisma from "@/lib/prisma";
 export const dynamic = "force-dynamic"; // Always fetch fresh data
 
 async function getData() {
-  const [heroData, aboutData, valuesData, settingsData] = await Promise.all([
-    prisma.heroContent.findFirst(),
-    prisma.aboutContent.findFirst(),
-    prisma.value.findMany({ orderBy: { order: "asc" } }),
-    prisma.siteSettings.findFirst(),
-  ]);
+  try {
+    const [heroData, aboutData, valuesData, settingsData] = await Promise.all([
+      prisma.heroContent.findFirst(),
+      prisma.aboutContent.findFirst(),
+      prisma.value.findMany({ orderBy: { order: "asc" } }),
+      prisma.siteSettings.findFirst(),
+    ]);
 
-  return { heroData, aboutData, valuesData, settingsData };
+    return { heroData, aboutData, valuesData, settingsData };
+  } catch (error) {
+    // Keep public pages available when database is unavailable in deployment.
+    console.error("Failed to load homepage data from database:", error);
+    return {
+      heroData: null,
+      aboutData: null,
+      valuesData: [],
+      settingsData: null,
+    };
+  }
 }
 
 export default async function Home() {
