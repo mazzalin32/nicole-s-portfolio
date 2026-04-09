@@ -1,16 +1,34 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import { z } from "zod";
+
+const contactSchema = z.object({
+    name: z.string().min(1, "Name is required"),
+    email: z.string().email("Valid email is required"),
+    subject: z.string().optional(),
+    message: z.string().min(1, "Message is required"),
+});
 
 export async function POST(req: Request) {
     try {
         const body = await req.json();
-        const { name, email, subject, message } = body;
-
-        // Validate input
-        if (!name || !email || !message) {
+        const parsed = contactSchema.safeParse(body);
+        if (!parsed.success) {
             return NextResponse.json(
-                { error: "Missing required fields" },
+                { error: "Invalid payload", details: parsed.error.flatten() },
                 { status: 400 }
+            );
+        }
+
+        const { name, email, subject, message } = parsed.data;
+        const senderEmail = process.env.EMAIL_USER;
+        const senderPass = process.env.EMAIL_PASS;
+        const receiverEmail = process.env.CONTACT_RECEIVER_EMAIL ?? senderEmail;
+
+        if (!senderEmail || !senderPass || !receiverEmail) {
+            return NextResponse.json(
+                { error: "Email transport is not configured" },
+                { status: 500 }
             );
         }
 
@@ -18,15 +36,15 @@ export async function POST(req: Request) {
         const transporter = nodemailer.createTransport({
             service: "gmail",
             auth: {
-                user: process.env.EMAIL_USER, // e.g. ashimwegra12@gmail.com
-                pass: process.env.EMAIL_PASS, // App Password
+                user: senderEmail,
+                pass: senderPass,
             },
         });
 
         // Email Content
         const mailOptions = {
-            from: process.env.EMAIL_USER,
-            to: "ashimwegra12@gmail.com", // Owner's email
+            from: senderEmail,
+            to: receiverEmail,
             replyTo: email, // Reply to the visitor
             subject: `New Contact Form Submission: ${subject || "General Inquiry"}`,
             text: `

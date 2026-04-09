@@ -8,14 +8,21 @@ console.log("Using database at:", dbPath);
 const db = new Database(dbPath);
 
 async function main() {
+  const adminEmail = process.env.SEED_ADMIN_EMAIL ?? "admin@example.com";
+  const adminName = process.env.SEED_ADMIN_NAME ?? "Admin";
+  const adminPassword = process.env.SEED_ADMIN_PASSWORD ?? "change-me-immediately";
+  const contactEmail = process.env.SEED_CONTACT_EMAIL ?? adminEmail;
+  const phoneNumber = process.env.SEED_PHONE_NUMBER ?? "";
+  const instagramUrl = process.env.SEED_INSTAGRAM_URL ?? "";
+
   // Create admin user
-  const hashedPassword = await bcrypt.hash("admin123", 12);
+  const hashedPassword = await bcrypt.hash(adminPassword, 12);
 
   // Insert admin
   db.prepare(`
     INSERT OR REPLACE INTO Admin (id, email, password, name, createdAt)
-    VALUES ('admin-1', 'ashimwegra12@gmail.com', '${hashedPassword}', 'Gracious', datetime('now'))
-  `).run();
+    VALUES (?, ?, ?, ?, datetime('now'))
+  `).run("admin-1", adminEmail, hashedPassword, adminName);
 
   // Insert Hero content
   db.prepare(`
@@ -51,8 +58,8 @@ If you''ve ever felt uninspired or stuck in a rut – you''re not alone. I''ve b
   // Insert Site Settings
   db.prepare(`
     INSERT OR REPLACE INTO SiteSettings (id, ownerName, contactEmail, phoneNumber, instagramUrl)
-    VALUES ('settings-1', 'Gracious', 'ashimwegra12@gmail.com', '0792630152', 'https://www.instagram.com/___.ashimwe_?igsh=d291eDF1djE0bjA3')
-  `).run();
+    VALUES (?, ?, ?, ?, ?)
+  `).run("settings-1", adminName, contactEmail, phoneNumber, instagramUrl);
 
   console.log("Database seeded successfully!");
 }

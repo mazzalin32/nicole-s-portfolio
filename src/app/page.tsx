@@ -26,7 +26,7 @@ export default async function Home() {
 
   return (
     <main>
-      <Navbar />
+      <Navbar ownerName={settingsData?.ownerName} />
       <Hero
         headline={heroData?.headline}
         subtitle={heroData?.subtitle}
@@ -44,7 +44,11 @@ export default async function Home() {
       <Services />
       <Skills />
       <Values values={valuesData} />
-      <Contact />
+      <Contact
+        contactEmail={settingsData?.contactEmail}
+        phoneNumber={settingsData?.phoneNumber || undefined}
+        instagramUrl={settingsData?.instagramUrl || undefined}
+      />
       <Footer
         ownerName={settingsData?.ownerName}
         contactEmail={settingsData?.contactEmail}

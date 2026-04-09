@@ -17,7 +17,11 @@ const navLinks = [
 import { useTheme } from "@/components/theme-provider";
 import { Moon, Sun, Heart } from "lucide-react";
 
-export default function Navbar() {
+interface NavbarProps {
+    ownerName?: string;
+}
+
+export default function Navbar({ ownerName = "Gracious" }: NavbarProps) {
     const [isOpen, setIsOpen] = useState(false);
     const { theme, setTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
@@ -38,7 +42,7 @@ export default function Navbar() {
                     className="font-[var(--font-serif)] text-lg tracking-widest uppercase text-[var(--color-text-dark)]"
                     style={{ fontFamily: 'var(--font-serif)' }}
                 >
-                    Gracious
+                    {ownerName}
                 </Link>
 
                 {/* Desktop Navigation */}
