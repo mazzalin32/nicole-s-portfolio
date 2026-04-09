@@ -14,10 +14,10 @@ interface HeroProps {
 }
 
 export default function Hero({
-    headline: _headline = "HI, I'm Gracious",
+    headline: _headline = "HI, I'm Nicole",
     subtitle: _subtitle = "Lifestyle Influencer & Content Creator",
     ctaText = "Work With Me",
-    imageUrl = "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=1000&fit=crop",
+    imageUrl = "/nicole-hero.png",
     studentsCount = "500K+",
     roleTitle: _roleTitle = "Your Style & Lifestyle Muse",
     roleSubtitle: _roleSubtitle = "Lifestyle Influencer & Content Creator",
@@ -86,7 +86,7 @@ export default function Hero({
                         <div className="relative aspect-[3/4] lg:aspect-[4/5] w-full max-w-lg mx-auto lg:ml-auto">
                             <Image
                                 src={imageUrl}
-                                alt="Gracious - Lifestyle Influencer"
+                                alt="Nicole - Lifestyle Influencer"
                                 fill
                                 className="object-cover object-top"
                                 priority

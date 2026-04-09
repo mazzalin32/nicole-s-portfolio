@@ -22,9 +22,9 @@ const dancingScript = Dancing_Script({
 });
 
 export const metadata: Metadata = {
-  title: "Gracious | Lifestyle Influencer & Content Creator",
+  title: "Nicole | Lifestyle Influencer & Content Creator",
   description:
-    "Hi, I'm Gracious. Lifestyle influencer and content creator inspiring you to live your best life with style, authenticity, and grace.",
+    "Hi, I'm Nicole. Lifestyle influencer and content creator inspiring you to live your best life with style, authenticity, and grace.",
 };
 
 export default function RootLayout({
@@ -37,7 +37,7 @@ export default function RootLayout({
       <body className="antialiased">
         <ThemeProvider
           defaultTheme="system"
-          storageKey="gracious-theme"
+          storageKey="nicole-theme"
         >
           {children}
         </ThemeProvider>

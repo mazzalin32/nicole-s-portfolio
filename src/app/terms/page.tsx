@@ -29,7 +29,7 @@ export default async function TermsPage() {
                         <section>
                             <h2 className="text-2xl font-serif mb-4">1. Agreement to Terms</h2>
                             <p>
-                                These Terms of Service constitute a legally binding agreement made between you, whether personally or on behalf of an entity ("you") and {settingsData?.ownerName || "Gracious Portfolio"} ("we," "us" or "our"), concerning your access to and use of our website.
+                                These Terms of Service constitute a legally binding agreement made between you, whether personally or on behalf of an entity ("you") and {settingsData?.ownerName || "Nicole Portfolio"} ("we," "us" or "our"), concerning your access to and use of our website.
                             </p>
                         </section>
 
@@ -50,7 +50,7 @@ export default async function TermsPage() {
                         <section>
                             <h2 className="text-2xl font-serif mb-4">4. Governing Law</h2>
                             <p>
-                                These Terms shall be governed by and defined following the laws of Rwanda. {settingsData?.ownerName || "Gracious Portfolio"} and yourself irrevocably consent that the courts of Rwanda shall have exclusive jurisdiction to resolve any dispute which may arise in connection with these terms.
+                                These Terms shall be governed by and defined following the laws of Rwanda. {settingsData?.ownerName || "Nicole Portfolio"} and yourself irrevocably consent that the courts of Rwanda shall have exclusive jurisdiction to resolve any dispute which may arise in connection with these terms.
                             </p>
                         </section>
 

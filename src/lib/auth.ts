@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs";
 import prisma from "@/lib/prisma";
 
 export const authOptions: AuthOptions = {
+    secret: process.env.NEXTAUTH_SECRET || process.env.AUTH_SECRET,
     providers: [
         CredentialsProvider({
             name: "credentials",
@@ -16,9 +17,15 @@ export const authOptions: AuthOptions = {
                     throw new Error("Email and password required");
                 }
 
-                const admin = await prisma.admin.findUnique({
-                    where: { email: credentials.email },
-                });
+                let admin = null;
+                try {
+                    admin = await prisma.admin.findUnique({
+                        where: { email: credentials.email },
+                    });
+                } catch (error) {
+                    console.error("Auth DB lookup failed during login:", error);
+                    return null;
+                }
 
                 if (!admin) {
                     throw new Error("Invalid credentials");
@@ -51,13 +58,17 @@ export const authOptions: AuthOptions = {
                 token.email = user.email;
                 token.name = user.name;
             } else if (token.email) {
-                // Fetch fresh data from DB on every request to ensure up-to-date name/email
-                const freshUser = await prisma.admin.findUnique({
-                    where: { email: token.email as string },
-                });
-                if (freshUser) {
-                    token.name = freshUser.name;
-                    token.email = freshUser.email;
+                try {
+                    // Fetch fresh data from DB on every request to ensure up-to-date name/email
+                    const freshUser = await prisma.admin.findUnique({
+                        where: { email: token.email as string },
+                    });
+                    if (freshUser) {
+                        token.name = freshUser.name;
+                        token.email = freshUser.email;
+                    }
+                } catch (error) {
+                    console.error("Auth DB lookup failed while refreshing JWT:", error);
                 }
             }
             return token;

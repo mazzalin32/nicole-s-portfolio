@@ -12,13 +12,13 @@ interface AboutProps {
 }
 
 export default function About({
-    introLine = "Hey, I'm Gracious",
+    introLine = "Hey, I'm Nicole",
     headline = "Influencer, Content Creator, and Your Lifestyle Muse",
     description = `I remember the moment I decided to share my authentic self with the world. That's when everything changed.
 
 If you've ever felt uninspired or stuck in a rut – you're not alone. I've been there. Now, I'm here to inspire you to embrace your unique style, live authentically, and create a life that feels exciting, beautiful, and so you.`,
     ctaText = "Work With Me",
-    imageUrl = "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600&h=800&fit=crop",
+    imageUrl = "/nicole-about.png",
 }: AboutProps) {
     return (
         <section
@@ -40,7 +40,7 @@ If you've ever felt uninspired or stuck in a rut – you're not alone. I've been
                             <div className="aspect-[3/4] w-full max-w-md relative">
                                 <Image
                                     src={imageUrl}
-                                    alt="Gracious - About"
+                                    alt="Nicole - About"
                                     fill
                                     className="object-cover"
                                     sizes="(max-width: 768px) 100vw, 40vw"

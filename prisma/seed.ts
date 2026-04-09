@@ -8,9 +8,9 @@ console.log("Using database at:", dbPath);
 const db = new Database(dbPath);
 
 async function main() {
-  const adminEmail = process.env.SEED_ADMIN_EMAIL ?? "admin@example.com";
-  const adminName = process.env.SEED_ADMIN_NAME ?? "Admin";
-  const adminPassword = process.env.SEED_ADMIN_PASSWORD ?? "change-me-immediately";
+  const adminEmail = process.env.SEED_ADMIN_EMAIL ?? "nicolelil@gmail.com";
+  const adminName = process.env.SEED_ADMIN_NAME ?? "Nicole";
+  const adminPassword = process.env.SEED_ADMIN_PASSWORD ?? "admin123";
   const contactEmail = process.env.SEED_CONTACT_EMAIL ?? adminEmail;
   const phoneNumber = process.env.SEED_PHONE_NUMBER ?? "";
   const instagramUrl = process.env.SEED_INSTAGRAM_URL ?? "";
@@ -26,16 +26,16 @@ async function main() {
 
   // Insert Hero content
   db.prepare(`
-    INSERT OR REPLACE INTO HeroContent (id, headline, subtitle, ctaText, studentsCount, roleTitle, roleSubtitle)
-    VALUES ('hero-1', 'HI, I''m Gracious', 'Lifestyle Influencer & Content Creator', 'Work With Me', '500K+', 'Your Style & Lifestyle Muse', 'Lifestyle Influencer & Content Creator')
+    INSERT OR REPLACE INTO HeroContent (id, headline, subtitle, ctaText, imageUrl, studentsCount, roleTitle, roleSubtitle)
+    VALUES ('hero-1', 'HI, I''m Nicole', 'Lifestyle Influencer & Content Creator', 'Work With Me', '/nicole-hero.png', '500K+', 'Your Style & Lifestyle Muse', 'Lifestyle Influencer & Content Creator')
   `).run();
 
   // Insert About content
   db.prepare(`
-    INSERT OR REPLACE INTO AboutContent (id, introLine, headline, description, ctaText)
-    VALUES ('about-1', 'Hey, I''m Gracious', 'Influencer, Content Creator, and Your Lifestyle Muse', 'I remember the moment I decided to share my authentic self with the world. That''s when everything changed.
+    INSERT OR REPLACE INTO AboutContent (id, introLine, headline, description, ctaText, imageUrl)
+    VALUES ('about-1', 'Hey, I''m Nicole', 'Influencer, Content Creator, and Your Lifestyle Muse', 'I remember the moment I decided to share my authentic self with the world. That''s when everything changed.
 
-If you''ve ever felt uninspired or stuck in a rut – you''re not alone. I''ve been there. Now, I''m here to inspire you to embrace your unique style, live authentically, and create a life that feels exciting, beautiful, and so you.', 'Work With Me')
+If you''ve ever felt uninspired or stuck in a rut – you''re not alone. I''ve been there. Now, I''m here to inspire you to embrace your unique style, live authentically, and create a life that feels exciting, beautiful, and so you.', 'Work With Me', '/nicole-about.png')
   `).run();
 
   // Insert Values

@@ -21,7 +21,7 @@ interface NavbarProps {
     ownerName?: string;
 }
 
-export default function Navbar({ ownerName = "Gracious" }: NavbarProps) {
+export default function Navbar({ ownerName = "Nicole" }: NavbarProps) {
     const [isOpen, setIsOpen] = useState(false);
     const { theme, setTheme } = useTheme();
     const [mounted, setMounted] = useState(false);

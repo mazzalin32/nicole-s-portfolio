@@ -12,7 +12,7 @@ interface FooterProps {
 }
 
 export default function Footer({
-    ownerName = "Gracious",
+    ownerName = "Nicole",
     contactEmail = "ashimwegra12@gmail.com",
     phoneNumber = "0792630152",
     instagramUrl = "https://www.instagram.com/___.ashimwe_?igsh=d291eDF1djE0bjA3",
