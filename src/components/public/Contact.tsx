@@ -123,6 +123,36 @@ export default function Contact({
                             </a>
 
                             <a
+                                href={`https://wa.me/${phoneNumber?.replace(/\D/g, '')}?text=Hi%20Nicole,%20I'm%20reaching%20out%20from%20your%20website.`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-4 text-[var(--color-text-dark)] hover:text-[var(--color-burgundy)] transition-colors group"
+                            >
+                                <div className="w-12 h-12 bg-[var(--color-cream-dark)] flex items-center justify-center group-hover:bg-[var(--color-burgundy)] group-hover:text-white transition-all">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        className="lucide lucide-message-circle"
+                                    >
+                                        <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p className="text-xs uppercase tracking-widest text-[var(--color-text-muted)]">
+                                        WhatsApp
+                                    </p>
+                                    <p className="font-medium">Chat with me</p>
+                                </div>
+                            </a>
+
+                            <a
                                 href={instagramUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
@@ -135,7 +165,11 @@ export default function Contact({
                                     <p className="text-xs uppercase tracking-widest text-[var(--color-text-muted)]">
                                         Instagram
                                     </p>
-                                    <p className="font-medium">@___.ashimwe_</p>
+                                    <p className="font-medium">
+                                        {instagramUrl?.includes("instagram.com/") 
+                                            ? `@${instagramUrl.split("instagram.com/")[1].split("?")[0].replace("/", "")}` 
+                                            : "@nicole"}
+                                    </p>
                                 </div>
                             </a>
                         </div>

@@ -1,36 +1,49 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Camera, Users, Megaphone, Mic } from "lucide-react";
+import * as Icons from "lucide-react";
+import { LucideIcon } from "lucide-react";
 
-const services = [
+interface ServiceProps {
+    services?: ({
+        id: string;
+        title: string;
+        description: string;
+        iconName: string | null;
+        features: { text: string }[];
+    })[];
+}
+
+const defaultServices = [
     {
-        icon: Camera,
+        iconName: "Camera",
         title: "Content Creation",
         description: "High-quality photo and video content for brands looking to connect with their audience authentically.",
-        features: ["Photo shoots", "Video content", "Behind-the-scenes", "Product showcases"],
+        features: [{ text: "Photo shoots" }, { text: "Video content" }, { text: "Behind-the-scenes" }, { text: "Product showcases" }],
     },
     {
-        icon: Users,
+        iconName: "Users",
         title: "Brand Collaborations",
         description: "Strategic partnerships that align with my values and resonate with my engaged community.",
-        features: ["Sponsored posts", "Brand ambassadorship", "Campaign features", "Product launches"],
+        features: [{ text: "Sponsored posts" }, { text: "Brand ambassadorship" }, { text: "Campaign features" }, { text: "Product launches" }],
     },
     {
-        icon: Megaphone,
+        iconName: "Megaphone",
         title: "Social Media Consulting",
         description: "Guidance on building an authentic social media presence that attracts and engages your ideal audience.",
-        features: ["Strategy sessions", "Content planning", "Growth tips", "Engagement tactics"],
+        features: [{ text: "Strategy sessions" }, { text: "Content planning" }, { text: "Growth tips" }, { text: "Engagement tactics" }],
     },
     {
-        icon: Mic,
+        iconName: "Mic",
         title: "Speaking Engagements",
         description: "Inspiring talks on personal branding, authenticity, and building a lifestyle brand.",
-        features: ["Keynote speeches", "Panel discussions", "Workshop hosting", "Event appearances"],
+        features: [{ text: "Keynote speeches" }, { text: "Panel discussions" }, { text: "Workshop hosting" }, { text: "Event appearances" }],
     },
 ];
 
-export default function Services() {
+export default function Services({ services = [] }: ServiceProps) {
+    const displayServices = services.length > 0 ? services : defaultServices;
+
     return (
         <section id="services" className="bg-[var(--color-cream)] py-20 lg:py-32">
             <div className="max-w-7xl mx-auto px-6">
@@ -58,41 +71,45 @@ export default function Services() {
 
                 {/* Services Grid */}
                 <div className="grid md:grid-cols-2 gap-8">
-                    {services.map((service, index) => (
-                        <motion.div
-                            key={service.title}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: index * 0.1 }}
-                            className="bg-white dark:bg-white/5 p-8 border border-[var(--color-cream-dark)] hover:border-[var(--color-burgundy)] transition-colors group pink:border-[var(--color-burgundy-light)] pink:shadow-sm"
-                        >
-                            <service.icon
-                                className="text-[var(--color-burgundy)] mb-6 group-hover:scale-110 transition-transform"
-                                size={36}
-                            />
-                            <h3
-                                className="text-xl mb-3 text-[var(--color-text-dark)]"
-                                style={{ fontFamily: "var(--font-serif)" }}
+                    {displayServices.map((service, index) => {
+                        const IconComponent = (Icons[service.iconName as keyof typeof Icons] as LucideIcon) || Icons.Camera;
+
+                        return (
+                            <motion.div
+                                key={service.title}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.6, delay: index * 0.1 }}
+                                className="bg-white dark:bg-white/5 p-8 border border-[var(--color-cream-dark)] hover:border-[var(--color-burgundy)] transition-colors group pink:border-[var(--color-burgundy-light)] pink:shadow-sm"
                             >
-                                {service.title}
-                            </h3>
-                            <p className="text-sm text-[var(--color-text-muted)] mb-6 leading-relaxed">
-                                {service.description}
-                            </p>
-                            <ul className="space-y-2">
-                                {service.features.map((feature) => (
-                                    <li
-                                        key={feature}
-                                        className="text-xs text-[var(--color-text-muted)] flex items-center gap-2"
-                                    >
-                                        <span className="w-1.5 h-1.5 bg-[var(--color-burgundy)] rounded-full" />
-                                        {feature}
-                                    </li>
-                                ))}
-                            </ul>
-                        </motion.div>
-                    ))}
+                                <IconComponent
+                                    className="text-[var(--color-burgundy)] mb-6 group-hover:scale-110 transition-transform"
+                                    size={36}
+                                />
+                                <h3
+                                    className="text-xl mb-3 text-[var(--color-text-dark)]"
+                                    style={{ fontFamily: "var(--font-serif)" }}
+                                >
+                                    {service.title}
+                                </h3>
+                                <p className="text-sm text-[var(--color-text-muted)] mb-6 leading-relaxed">
+                                    {service.description}
+                                </p>
+                                <ul className="space-y-2">
+                                    {service.features.map((feature, i) => (
+                                        <li
+                                            key={i}
+                                            className="text-xs text-[var(--color-text-muted)] flex items-center gap-2"
+                                        >
+                                            <span className="w-1.5 h-1.5 bg-[var(--color-burgundy)] rounded-full" />
+                                            {feature.text}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </motion.div>
+                        );
+                    })}
                 </div>
 
                 {/* CTA */}

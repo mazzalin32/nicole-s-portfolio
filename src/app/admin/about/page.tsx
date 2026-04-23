@@ -13,6 +13,8 @@ interface AboutData {
     headline: string;
     description: string;
     ctaText: string;
+    imageUrl: string | null;
+    quote: string | null;
 }
 
 export default function AdminAboutPage() {
@@ -149,6 +151,27 @@ export default function AdminAboutPage() {
                             value={data.ctaText}
                             onChange={(e) => setData({ ...data, ctaText: e.target.value })}
                             className="w-full px-4 py-3 border border-[var(--color-cream-dark)] focus:border-[var(--color-burgundy)] focus:outline-none transition-colors bg-white dark:bg-[var(--color-cream)]"
+                        />
+                    </div>
+
+                    <div>
+                        <label className="block text-xs font-medium tracking-widest uppercase text-[var(--color-text-muted)] mb-2">About Image URL</label>
+                        <input
+                            type="text"
+                            value={data.imageUrl || ""}
+                            onChange={(e) => setData({ ...data, imageUrl: e.target.value })}
+                            placeholder="/nicole-about.png"
+                            className="w-full px-4 py-3 border border-[var(--color-cream-dark)] focus:border-[var(--color-burgundy)] focus:outline-none transition-colors bg-white dark:bg-[var(--color-cream)]"
+                        />
+                    </div>
+
+                    <div>
+                        <label className="block text-xs font-medium tracking-widest uppercase text-[var(--color-text-muted)] mb-2">Quote</label>
+                        <textarea
+                            value={data.quote || ""}
+                            onChange={(e) => setData({ ...data, quote: e.target.value })}
+                            rows={3}
+                            className="w-full px-4 py-3 border border-[var(--color-cream-dark)] focus:border-[var(--color-burgundy)] focus:outline-none transition-colors resize-none bg-white dark:bg-[var(--color-cream)]"
                         />
                     </div>
                 </div>

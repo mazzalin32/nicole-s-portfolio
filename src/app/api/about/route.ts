@@ -10,6 +10,8 @@ const updateAboutSchema = z.object({
     headline: z.string().min(1, "Headline is required"),
     description: z.string().min(1, "Description is required"),
     ctaText: z.string().min(1, "CTA text is required"),
+    imageUrl: z.string().optional(),
+    quote: z.string().optional(),
 });
 
 export async function GET() {
@@ -38,7 +40,7 @@ export async function PUT(request: Request) {
             );
         }
 
-        const { id, introLine, headline, description, ctaText } = parsed.data;
+        const { id, introLine, headline, description, ctaText, imageUrl, quote } = parsed.data;
 
         const about = await prisma.aboutContent.update({
             where: { id },
@@ -47,6 +49,8 @@ export async function PUT(request: Request) {
                 headline,
                 description,
                 ctaText,
+                imageUrl,
+                quote,
             },
         });
 

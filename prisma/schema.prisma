@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
 }
 
 model Admin {
@@ -35,6 +35,38 @@ model AboutContent {
   description String
   ctaText     String
   imageUrl    String?
+  quote       String?
+}
+
+model Service {
+  id          String           @id @default(cuid())
+  title       String
+  description String
+  iconName    String?          // Store Lucide icon name
+  order       Int              @default(0)
+  features    ServiceFeature[]
+}
+
+model ServiceFeature {
+  id        String  @id @default(cuid())
+  text      String
+  service   Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  serviceId String
+}
+
+model Skill {
+  id          String  @id @default(cuid())
+  name        String
+  description String?
+  level       Int     @default(0) // For technical skills
+  category    String  // "Creative" or "Technical"
+  order       Int     @default(0)
+}
+
+model Platform {
+  id    String @id @default(cuid())
+  name  String
+  order Int    @default(0)
 }
 
 model Value {

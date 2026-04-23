@@ -9,6 +9,7 @@ interface AboutProps {
     description?: string;
     ctaText?: string;
     imageUrl?: string;
+    quote?: string;
 }
 
 export default function About({
@@ -19,6 +20,7 @@ export default function About({
 If you've ever felt uninspired or stuck in a rut – you're not alone. I've been there. Now, I'm here to inspire you to embrace your unique style, live authentically, and create a life that feels exciting, beautiful, and so you.`,
     ctaText = "Work With Me",
     imageUrl = "/nicole-about.png",
+    quote = "I inspire others to embrace their authentic style and live their best life with grace.",
 }: AboutProps) {
     return (
         <section
@@ -50,7 +52,7 @@ If you've ever felt uninspired or stuck in a rut – you're not alone. I've been
                             {/* Overlapping Burgundy Card */}
                             <div className="absolute -bottom-8 -right-8 lg:-right-16 w-48 lg:w-64 bg-[var(--color-burgundy)] p-6 text-white">
                                 <p className="text-xs italic leading-relaxed" style={{ fontFamily: 'var(--font-script)' }}>
-                                    &ldquo;I inspire others to embrace their authentic style and live their best life with grace.&rdquo;
+                                    &ldquo;{quote}&rdquo;
                                 </p>
                             </div>
                         </div>

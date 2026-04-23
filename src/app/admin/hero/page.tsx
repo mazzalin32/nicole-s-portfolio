@@ -12,6 +12,7 @@ interface HeroData {
     headline: string;
     subtitle: string;
     ctaText: string;
+    imageUrl: string | null;
     studentsCount: string | null;
     roleTitle: string | null;
     roleSubtitle: string | null;
@@ -182,6 +183,23 @@ export default function AdminHeroPage() {
                         />
                     </div>
 
+                    {/* Image URL */}
+                    <div>
+                        <label className="block text-xs font-medium tracking-widest uppercase text-[var(--color-text-muted)] mb-2">
+                            Hero Image URL
+                        </label>
+                        <input
+                            type="text"
+                            value={data.imageUrl || ""}
+                            onChange={(e) => setData({ ...data, imageUrl: e.target.value })}
+                            placeholder="/nicole-hero.png"
+                            className="w-full px-4 py-3 border border-[var(--color-cream-dark)] focus:border-[var(--color-burgundy)] focus:outline-none transition-colors bg-white dark:bg-[var(--color-cream)]"
+                        />
+                        <p className="mt-1 text-[10px] text-[var(--color-text-muted)] italic">
+                            Tip: You can use a relative path like /nicole-hero.png or a full URL.
+                        </p>
+                    </div>
+
                     {/* Role Title */}
                     <div>
                         <label className="block text-xs font-medium tracking-widest uppercase text-[var(--color-text-muted)] mb-2">
@@ -191,6 +209,19 @@ export default function AdminHeroPage() {
                             type="text"
                             value={data.roleTitle || ""}
                             onChange={(e) => setData({ ...data, roleTitle: e.target.value })}
+                            className="w-full px-4 py-3 border border-[var(--color-cream-dark)] focus:border-[var(--color-burgundy)] focus:outline-none transition-colors bg-white dark:bg-[var(--color-cream)]"
+                        />
+                    </div>
+
+                    {/* Role Subtitle */}
+                    <div>
+                        <label className="block text-xs font-medium tracking-widest uppercase text-[var(--color-text-muted)] mb-2">
+                            Role Subtitle
+                        </label>
+                        <input
+                            type="text"
+                            value={data.roleSubtitle || ""}
+                            onChange={(e) => setData({ ...data, roleSubtitle: e.target.value })}
                             className="w-full px-4 py-3 border border-[var(--color-cream-dark)] focus:border-[var(--color-burgundy)] focus:outline-none transition-colors bg-white dark:bg-[var(--color-cream)]"
                         />
                     </div>

@@ -60,7 +60,8 @@ export default function AdminSettingsPage() {
             if (res.ok) {
                 setMessage("Changes saved successfully!");
             } else {
-                setMessage("Failed to save changes.");
+                const errorData = await res.json();
+                setMessage(errorData.error || "Failed to save changes.");
             }
         } catch {
             setMessage("An error occurred.");

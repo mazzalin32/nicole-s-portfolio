@@ -2,7 +2,21 @@
 
 import { motion } from "framer-motion";
 
-const softSkills = [
+interface SkillProps {
+    skills?: {
+        id: string;
+        name: string;
+        description: string | null;
+        level: number;
+        category: string;
+    }[];
+    platforms?: {
+        id: string;
+        name: string;
+    }[];
+}
+
+const defaultSoftSkills = [
     { name: "Storytelling", description: "Crafting compelling narratives that resonate" },
     { name: "Communication", description: "Clear, authentic, and engaging interactions" },
     { name: "Creativity", description: "Fresh ideas and unique perspectives" },
@@ -11,7 +25,7 @@ const softSkills = [
     { name: "Authenticity", description: "Staying true to personal values" },
 ];
 
-const technicalSkills = [
+const defaultTechnicalSkills = [
     { name: "Photography", level: 95 },
     { name: "Video Editing", level: 90 },
     { name: "Social Media Strategy", level: 95 },
@@ -20,11 +34,22 @@ const technicalSkills = [
     { name: "Community Management", level: 90 },
 ];
 
-const platforms = [
+const defaultPlatforms = [
     "Instagram", "TikTok", "YouTube", "Pinterest", "LinkedIn", "Twitter"
 ];
 
-export default function Skills() {
+export default function Skills({ skills = [], platforms = [] }: SkillProps) {
+    const softSkills = skills.length > 0
+        ? skills.filter(s => s.category === "Creative")
+        : defaultSoftSkills;
+
+    const technicalSkills = skills.length > 0
+        ? skills.filter(s => s.category === "Technical")
+        : defaultTechnicalSkills;
+
+    const displayPlatforms = platforms.length > 0
+        ? platforms.map(p => p.name)
+        : defaultPlatforms;
     return (
         <section id="skills" className="bg-[var(--color-cream-dark)] py-20 lg:py-32">
             <div className="max-w-7xl mx-auto px-6">
@@ -134,7 +159,7 @@ export default function Skills() {
                                 Platforms
                             </h4>
                             <div className="flex flex-wrap gap-2">
-                                {platforms.map((platform) => (
+                                {displayPlatforms.map((platform) => (
                                     <span
                                         key={platform}
                                         className="px-4 py-2 bg-white dark:bg-white/5 text-xs text-[var(--color-text-muted)] border border-[var(--color-cream-dark)] pink:border-[var(--color-burgundy-light)]"

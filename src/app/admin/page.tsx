@@ -21,6 +21,8 @@ const menuItems = [
     { href: "/admin/hero", label: "Hero Section", icon: FileText },
     { href: "/admin/about", label: "About Section", icon: User },
     { href: "/admin/values", label: "Values", icon: Heart },
+    { href: "/admin/services", label: "Services", icon: FileText },
+    { href: "/admin/skills", label: "Skills", icon: Settings },
     { href: "/admin/blog", label: "Blog Posts", icon: FileText },
     { href: "/admin/podcast", label: "Podcast Episodes", icon: Mic },
     { href: "/admin/settings", label: "Site Settings", icon: Settings },
@@ -64,7 +66,7 @@ export default function AdminDashboard() {
                             {session.user?.email}
                         </span>
                         <button
-                            onClick={() => signOut({ callbackUrl: "/admin/login" })}
+                            onClick={() => signOut({ callbackUrl: "/" })}
                             className="flex items-center gap-2 text-sm text-[var(--color-burgundy)] hover:text-[var(--color-burgundy-dark)] transition-colors"
                         >
                             <LogOut size={16} />

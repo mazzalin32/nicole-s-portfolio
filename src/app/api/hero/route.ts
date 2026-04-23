@@ -9,6 +9,7 @@ const updateHeroSchema = z.object({
     headline: z.string().min(1, "Headline is required"),
     subtitle: z.string().min(1, "Subtitle is required"),
     ctaText: z.string().min(1, "CTA text is required"),
+    imageUrl: z.string().optional(),
     studentsCount: z.string().min(1, "Students count is required"),
     roleTitle: z.string().min(1, "Role title is required"),
     roleSubtitle: z.string().min(1, "Role subtitle is required"),
@@ -40,7 +41,7 @@ export async function PUT(request: Request) {
             );
         }
 
-        const { id, headline, subtitle, ctaText, studentsCount, roleTitle, roleSubtitle } = parsed.data;
+        const { id, headline, subtitle, ctaText, imageUrl, studentsCount, roleTitle, roleSubtitle } = parsed.data;
 
         const hero = await prisma.heroContent.update({
             where: { id },
@@ -48,6 +49,7 @@ export async function PUT(request: Request) {
                 headline,
                 subtitle,
                 ctaText,
+                imageUrl,
                 studentsCount,
                 roleTitle,
                 roleSubtitle,

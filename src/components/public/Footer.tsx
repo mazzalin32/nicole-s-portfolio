@@ -91,6 +91,30 @@ export default function Footer({
                                     {phoneNumber}
                                 </a>
                             )}
+                            {phoneNumber && (
+                                <a
+                                    href={`https://wa.me/${phoneNumber?.replace(/\D/g, '')}?text=Hi%20Nicole,%20I'm%20reaching%20out%20from%20your%20website.`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-sm text-white/70 hover:text-white transition-colors flex items-center gap-2"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="16"
+                                        height="16"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        className="lucide lucide-message-circle"
+                                    >
+                                        <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
+                                    </svg>
+                                    WhatsApp
+                                </a>
+                            )}
                         </div>
 
                         {/* Social Links */}
@@ -121,6 +145,10 @@ export default function Footer({
                         </Link>
                         <Link href="/terms" className="text-xs text-white/50 hover:text-white transition-colors">
                             Terms of Service
+                        </Link>
+                        <Link href="/admin" className="text-xs text-white/40 hover:text-white transition-colors flex items-center gap-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                            Admin
                         </Link>
                     </div>
                 </div>

@@ -12,28 +12,35 @@ export const dynamic = "force-dynamic"; // Always fetch fresh data
 
 async function getData() {
   try {
-    const [heroData, aboutData, valuesData, settingsData] = await Promise.all([
+    const [heroData, aboutData, valuesData, settingsData, servicesData, skillsData, platformsData] = await Promise.all([
       prisma.heroContent.findFirst(),
       prisma.aboutContent.findFirst(),
       prisma.value.findMany({ orderBy: { order: "asc" } }),
       prisma.siteSettings.findFirst(),
+      (prisma as any).service?.findMany({ orderBy: { order: "asc" }, include: { features: true } }) || [],
+      (prisma as any).skill?.findMany({ orderBy: { order: "asc" } }) || [],
+      (prisma as any).platform?.findMany({ orderBy: { order: "asc" } }) || [],
     ]);
 
-    return { heroData, aboutData, valuesData, settingsData };
+    return { heroData, aboutData, valuesData, settingsData, servicesData, skillsData, platformsData };
   } catch (error) {
-    // Keep public pages available when database is unavailable in deployment.
     console.error("Failed to load homepage data from database:", error);
     return {
       heroData: null,
       aboutData: null,
       valuesData: [],
       settingsData: null,
+      servicesData: [],
+      skillsData: [],
+      platformsData: [],
     };
   }
 }
 
+import WhatsAppButton from "@/components/public/WhatsAppButton";
+
 export default async function Home() {
-  const { heroData, aboutData, valuesData, settingsData } = await getData();
+  const { heroData, aboutData, valuesData, settingsData, servicesData, skillsData, platformsData } = await getData();
 
   return (
     <main>
@@ -42,6 +49,7 @@ export default async function Home() {
         headline={heroData?.headline}
         subtitle={heroData?.subtitle}
         ctaText={heroData?.ctaText}
+        imageUrl={heroData?.imageUrl || undefined}
         studentsCount={heroData?.studentsCount || undefined}
         roleTitle={heroData?.roleTitle || undefined}
         roleSubtitle={heroData?.roleSubtitle || undefined}
@@ -51,9 +59,11 @@ export default async function Home() {
         headline={aboutData?.headline}
         description={aboutData?.description}
         ctaText={aboutData?.ctaText}
+        imageUrl={aboutData?.imageUrl || undefined}
+        quote={aboutData?.quote || undefined}
       />
-      <Services />
-      <Skills />
+      <Services services={servicesData} />
+      <Skills skills={skillsData} platforms={platformsData} />
       <Values values={valuesData} />
       <Contact
         contactEmail={settingsData?.contactEmail}
@@ -66,6 +76,7 @@ export default async function Home() {
         phoneNumber={settingsData?.phoneNumber || undefined}
         instagramUrl={settingsData?.instagramUrl || undefined}
       />
+      <WhatsAppButton phoneNumber={settingsData?.phoneNumber || undefined} />
     </main>
   );
 }

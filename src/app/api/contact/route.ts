@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import prisma from "@/lib/prisma";
 import nodemailer from "nodemailer";
 import { z } from "zod";
 
@@ -21,9 +22,13 @@ export async function POST(req: Request) {
         }
 
         const { name, email, subject, message } = parsed.data;
+        
+        // Fetch receiver email from site settings
+        const settings = await prisma.siteSettings.findFirst();
+        const receiverEmail = settings?.contactEmail || process.env.CONTACT_RECEIVER_EMAIL;
+        
         const senderEmail = process.env.EMAIL_USER;
         const senderPass = process.env.EMAIL_PASS;
-        const receiverEmail = process.env.CONTACT_RECEIVER_EMAIL ?? senderEmail;
 
         if (!senderEmail || !senderPass || !receiverEmail) {
             return NextResponse.json(

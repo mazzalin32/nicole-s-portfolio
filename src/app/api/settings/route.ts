@@ -8,8 +8,8 @@ const updateSettingsSchema = z.object({
     id: z.string().min(1, "ID is required"),
     ownerName: z.string().min(1, "Owner name is required"),
     contactEmail: z.string().email("Valid contact email is required"),
-    phoneNumber: z.string().min(1, "Phone number is required"),
-    instagramUrl: z.string().url("Valid Instagram URL is required"),
+    phoneNumber: z.string().optional().nullable(),
+    instagramUrl: z.string().optional().nullable(),
 });
 
 export async function GET() {
