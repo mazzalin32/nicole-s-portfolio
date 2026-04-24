@@ -46,11 +46,11 @@ export default async function Home() {
 
   return (
     <main>
-      <Navbar ownerName={settingsData?.ownerName} />
+      <Navbar ownerName={settingsData?.ownerName || undefined} />
       <Hero
-        headline={heroData?.headline}
-        subtitle={heroData?.subtitle}
-        ctaText={heroData?.ctaText}
+        headline={heroData?.headline || undefined}
+        subtitle={heroData?.subtitle || undefined}
+        ctaText={heroData?.ctaText || undefined}
         imageUrl={heroData?.imageUrl || undefined}
         secondaryImageUrl={heroData?.secondaryImageUrl || undefined}
         studentsCount={heroData?.studentsCount || undefined}
@@ -58,10 +58,10 @@ export default async function Home() {
         roleSubtitle={heroData?.roleSubtitle || undefined}
       />
       <About
-        introLine={aboutData?.introLine}
-        headline={aboutData?.headline}
-        description={aboutData?.description}
-        ctaText={aboutData?.ctaText}
+        introLine={aboutData?.introLine || undefined}
+        headline={aboutData?.headline || undefined}
+        description={aboutData?.description || undefined}
+        ctaText={aboutData?.ctaText || undefined}
         imageUrl={aboutData?.imageUrl || undefined}
         secondaryImageUrl={aboutData?.secondaryImageUrl || undefined}
         quote={aboutData?.quote || undefined}
@@ -70,13 +70,13 @@ export default async function Home() {
       <Skills skills={skillsData} platforms={platformsData} />
       <Values values={valuesData} />
       <Contact
-        contactEmail={settingsData?.contactEmail}
+        contactEmail={settingsData?.contactEmail || undefined}
         phoneNumber={settingsData?.phoneNumber || undefined}
         instagramUrl={settingsData?.instagramUrl || undefined}
       />
       <Footer
-        ownerName={settingsData?.ownerName}
-        contactEmail={settingsData?.contactEmail}
+        ownerName={settingsData?.ownerName || undefined}
+        contactEmail={settingsData?.contactEmail || undefined}
         phoneNumber={settingsData?.phoneNumber || undefined}
         instagramUrl={settingsData?.instagramUrl || undefined}
         socialLinks={(settingsData as any)?.socialLinks || []}
