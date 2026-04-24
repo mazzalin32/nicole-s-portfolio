@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft, Save, Loader2 } from "lucide-react";
 import Link from "next/link";
+import ImageUpload from "@/components/admin/ImageUpload";
+
 
 interface HeroData {
     id: string;
@@ -13,6 +15,7 @@ interface HeroData {
     subtitle: string;
     ctaText: string;
     imageUrl: string | null;
+    secondaryImageUrl: string | null;
     studentsCount: string | null;
     roleTitle: string | null;
     roleSubtitle: string | null;
@@ -144,17 +147,20 @@ export default function AdminHeroPage() {
                         />
                     </div>
 
-                    {/* Subtitle */}
+                    {/* Subtitle / Bio */}
                     <div>
                         <label className="block text-xs font-medium tracking-widest uppercase text-[var(--color-text-muted)] mb-2">
-                            Subtitle
+                            Bio / Description
                         </label>
-                        <input
-                            type="text"
+                        <textarea
                             value={data.subtitle}
                             onChange={(e) => setData({ ...data, subtitle: e.target.value })}
+                            rows={4}
                             className="w-full px-4 py-3 border border-[var(--color-cream-dark)] focus:border-[var(--color-burgundy)] focus:outline-none transition-colors bg-white dark:bg-[var(--color-cream)]"
                         />
+                        <p className="mt-1 text-[10px] text-[var(--color-text-muted)] italic">
+                            This appears in the main hero section (the space you marked).
+                        </p>
                     </div>
 
                     {/* CTA Text */}
@@ -173,7 +179,7 @@ export default function AdminHeroPage() {
                     {/* Students Count */}
                     <div>
                         <label className="block text-xs font-medium tracking-widest uppercase text-[var(--color-text-muted)] mb-2">
-                            Followers Count
+                            Client / Success Count
                         </label>
                         <input
                             type="text"
@@ -183,27 +189,37 @@ export default function AdminHeroPage() {
                         />
                     </div>
 
-                    {/* Image URL */}
+                    {/* Image Uploads */}
+                    <div className="grid md:grid-cols-2 gap-6">
+                        <ImageUpload
+                            label="Main Hero Image"
+                            value={data.imageUrl || ""}
+                            onChange={(url) => setData({ ...data, imageUrl: url })}
+                        />
+                        <ImageUpload
+                            label="Secondary/Floating Image"
+                            value={data.secondaryImageUrl || ""}
+                            onChange={(url) => setData({ ...data, secondaryImageUrl: url })}
+                        />
+                    </div>
+
+                    {/* Role Subtitle */}
                     <div>
                         <label className="block text-xs font-medium tracking-widest uppercase text-[var(--color-text-muted)] mb-2">
-                            Hero Image URL
+                            Main Tagline (Left)
                         </label>
                         <input
                             type="text"
-                            value={data.imageUrl || ""}
-                            onChange={(e) => setData({ ...data, imageUrl: e.target.value })}
-                            placeholder="/nicole-hero.png"
+                            value={data.roleSubtitle || ""}
+                            onChange={(e) => setData({ ...data, roleSubtitle: e.target.value })}
                             className="w-full px-4 py-3 border border-[var(--color-cream-dark)] focus:border-[var(--color-burgundy)] focus:outline-none transition-colors bg-white dark:bg-[var(--color-cream)]"
                         />
-                        <p className="mt-1 text-[10px] text-[var(--color-text-muted)] italic">
-                            Tip: You can use a relative path like /nicole-hero.png or a full URL.
-                        </p>
                     </div>
 
                     {/* Role Title */}
                     <div>
                         <label className="block text-xs font-medium tracking-widest uppercase text-[var(--color-text-muted)] mb-2">
-                            Role Title
+                            Second Tagline (Right)
                         </label>
                         <input
                             type="text"
@@ -213,18 +229,6 @@ export default function AdminHeroPage() {
                         />
                     </div>
 
-                    {/* Role Subtitle */}
-                    <div>
-                        <label className="block text-xs font-medium tracking-widest uppercase text-[var(--color-text-muted)] mb-2">
-                            Role Subtitle
-                        </label>
-                        <input
-                            type="text"
-                            value={data.roleSubtitle || ""}
-                            onChange={(e) => setData({ ...data, roleSubtitle: e.target.value })}
-                            className="w-full px-4 py-3 border border-[var(--color-cream-dark)] focus:border-[var(--color-burgundy)] focus:outline-none transition-colors bg-white dark:bg-[var(--color-cream)]"
-                        />
-                    </div>
                 </div>
             </div>
         </div>

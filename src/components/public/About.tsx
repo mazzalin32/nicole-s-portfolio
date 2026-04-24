@@ -9,18 +9,20 @@ interface AboutProps {
     description?: string;
     ctaText?: string;
     imageUrl?: string;
+    secondaryImageUrl?: string | null;
     quote?: string;
 }
 
 export default function About({
     introLine = "Hey, I'm Nicole",
-    headline = "Influencer, Content Creator, and Your Lifestyle Muse",
-    description = `I remember the moment I decided to share my authentic self with the world. That's when everything changed.
+    headline = "Expert Virtual Assistant & Strategic Business Partner",
+    description = `I specialize in providing high-level administrative support and strategic operations management to help entrepreneurs and businesses scale efficiently.
 
-If you've ever felt uninspired or stuck in a rut – you're not alone. I've been there. Now, I'm here to inspire you to embrace your unique style, live authentically, and create a life that feels exciting, beautiful, and so you.`,
+Whether you need calendar management, process optimization, or executive-level assistance, I'm here to ensure your business runs smoothly so you can focus on your vision.`,
     ctaText = "Work With Me",
     imageUrl = "/nicole-about.png",
-    quote = "I inspire others to embrace their authentic style and live their best life with grace.",
+    secondaryImageUrl = "/nicole-about-2.png",
+    quote = "Streamlining your business operations with precision and professional excellence.",
 }: AboutProps) {
     return (
         <section
@@ -39,15 +41,27 @@ If you've ever felt uninspired or stuck in a rut – you're not alone. I've been
                     >
                         {/* Main Image with Burgundy Card Overlay */}
                         <div className="relative">
-                            <div className="aspect-[3/4] w-full max-w-md relative">
+                            <div className="aspect-[3/4] w-full max-w-md relative z-10">
                                 <Image
                                     src={imageUrl}
-                                    alt="Nicole - About"
+                                    alt="Nicole - Virtual Assistant"
                                     fill
                                     className="object-cover"
                                     sizes="(max-width: 768px) 100vw, 40vw"
                                 />
                             </div>
+
+                            {/* Secondary Image behind */}
+                            {secondaryImageUrl && (
+                                <div className="absolute -top-6 -left-6 w-48 h-64 bg-[var(--color-burgundy)] z-0 overflow-hidden">
+                                    <Image
+                                        src={secondaryImageUrl}
+                                        alt="Decorative"
+                                        fill
+                                        className="object-cover opacity-60"
+                                    />
+                                </div>
+                            )}
 
                             {/* Overlapping Burgundy Card */}
                             <div className="absolute -bottom-8 -right-8 lg:-right-16 w-48 lg:w-64 bg-[var(--color-burgundy)] p-6 text-white">

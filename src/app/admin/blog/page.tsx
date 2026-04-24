@@ -6,11 +6,13 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft, Plus, Trash2, Loader2, Save } from "lucide-react";
 import Link from "next/link";
+import ImageUpload from "@/components/admin/ImageUpload";
 
 interface BlogPost {
     id: string;
     title: string;
     content: string;
+    imageUrl?: string | null;
     createdAt: string;
 }
 
@@ -78,6 +80,11 @@ export default function AdminBlogPage() {
                             className="w-full p-3 border border-[var(--color-cream-dark)]"
                             required
                         />
+                        <ImageUpload
+                            label="Featured Image"
+                            value={newPost.imageUrl}
+                            onChange={(url) => setNewPost({ ...newPost, imageUrl: url })}
+                        />
                         <textarea
                             placeholder="Content"
                             value={newPost.content}
@@ -97,11 +104,17 @@ export default function AdminBlogPage() {
                     {posts.length === 0 ? <p className="text-sm italic text-gray-500">No posts yet.</p> : (
                         posts.map(post => (
                             <div key={post.id} className="bg-white p-6 border border-[var(--color-cream-dark)] flex justify-between items-start">
-                                <div>
-                                    <h3 className="font-bold">{post.title}</h3>
-                                    <p className="text-xs text-gray-500 mt-1">{new Date(post.createdAt).toLocaleDateString()}</p>
+                                <div className="flex gap-4 items-center">
+                                    {post.imageUrl && (
+                                        <div className="w-16 h-16 relative flex-shrink-0">
+                                            <img src={post.imageUrl} alt="" className="w-full h-full object-cover" />
+                                        </div>
+                                    )}
+                                    <div>
+                                        <h3 className="font-bold">{post.title}</h3>
+                                        <p className="text-xs text-gray-500 mt-1">{new Date(post.createdAt).toLocaleDateString()}</p>
+                                    </div>
                                 </div>
-                                {/* Add Delete button logic later if needed */}
                             </div>
                         ))
                     )}

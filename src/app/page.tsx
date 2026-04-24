@@ -16,7 +16,9 @@ async function getData() {
       prisma.heroContent.findFirst(),
       prisma.aboutContent.findFirst(),
       prisma.value.findMany({ orderBy: { order: "asc" } }),
-      prisma.siteSettings.findFirst(),
+      prisma.siteSettings.findFirst({
+        include: { socialLinks: { orderBy: { order: "asc" } } }
+      }),
       (prisma as any).service?.findMany({ orderBy: { order: "asc" }, include: { features: true } }) || [],
       (prisma as any).skill?.findMany({ orderBy: { order: "asc" } }) || [],
       (prisma as any).platform?.findMany({ orderBy: { order: "asc" } }) || [],
@@ -50,6 +52,7 @@ export default async function Home() {
         subtitle={heroData?.subtitle}
         ctaText={heroData?.ctaText}
         imageUrl={heroData?.imageUrl || undefined}
+        secondaryImageUrl={heroData?.secondaryImageUrl || undefined}
         studentsCount={heroData?.studentsCount || undefined}
         roleTitle={heroData?.roleTitle || undefined}
         roleSubtitle={heroData?.roleSubtitle || undefined}
@@ -60,6 +63,7 @@ export default async function Home() {
         description={aboutData?.description}
         ctaText={aboutData?.ctaText}
         imageUrl={aboutData?.imageUrl || undefined}
+        secondaryImageUrl={aboutData?.secondaryImageUrl || undefined}
         quote={aboutData?.quote || undefined}
       />
       <Services services={servicesData} />
@@ -75,6 +79,7 @@ export default async function Home() {
         contactEmail={settingsData?.contactEmail}
         phoneNumber={settingsData?.phoneNumber || undefined}
         instagramUrl={settingsData?.instagramUrl || undefined}
+        socialLinks={(settingsData as any)?.socialLinks || []}
       />
       <WhatsAppButton phoneNumber={settingsData?.phoneNumber || undefined} />
     </main>

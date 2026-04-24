@@ -2,13 +2,20 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Instagram, Twitter, Linkedin, Mail } from "lucide-react";
+import { Instagram, Twitter, Linkedin, Mail, Github, Globe, MessageCircle } from "lucide-react";
+
+interface SocialLink {
+    platform: string;
+    url: string;
+    iconName?: string | null;
+}
 
 interface FooterProps {
     ownerName?: string;
     contactEmail?: string;
     phoneNumber?: string;
     instagramUrl?: string;
+    socialLinks?: SocialLink[];
 }
 
 export default function Footer({
@@ -16,8 +23,20 @@ export default function Footer({
     contactEmail = "ashimwegra12@gmail.com",
     phoneNumber = "0792630152",
     instagramUrl = "https://www.instagram.com/___.ashimwe_?igsh=d291eDF1djE0bjA3",
+    socialLinks = [],
 }: FooterProps) {
     const currentYear = new Date().getFullYear();
+
+    const getIcon = (platform: string) => {
+        switch (platform.toLowerCase()) {
+            case "instagram": return <Instagram size={18} />;
+            case "twitter": return <Twitter size={18} />;
+            case "linkedin": return <Linkedin size={18} />;
+            case "github": return <Github size={18} />;
+            case "whatsapp": return <MessageCircle size={18} />;
+            default: return <Globe size={18} />;
+        }
+    };
 
     return (
         <footer className="bg-[#1A1A1A] dark:bg-black text-white py-16 lg:py-24">
@@ -33,8 +52,8 @@ export default function Footer({
                             {ownerName}
                         </Link>
                         <p className="text-sm text-white/70 leading-relaxed max-w-sm">
-                            Lifestyle influencer and content creator inspiring you to live your
-                            best life with style, authenticity, and grace.
+                            Experienced virtual assistant dedicated to streamlining your business 
+                            operations and enhancing productivity through efficient administrative support.
                         </p>
                     </div>
 
@@ -118,21 +137,39 @@ export default function Footer({
                         </div>
 
                         {/* Social Links */}
-                        <div className="flex gap-4">
-                            {instagramUrl && (
-                                <motion.a
-                                    href={instagramUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    whileHover={{ scale: 1.1 }}
-                                    className="w-10 h-10 bg-white/10 flex items-center justify-center hover:bg-[var(--color-burgundy)] transition-colors"
-                                >
-                                    <Instagram size={18} />
-                                </motion.a>
+                        <div className="flex flex-wrap gap-4">
+                            {socialLinks.length > 0 ? (
+                                socialLinks.map((link, i) => (
+                                    <motion.a
+                                        key={i}
+                                        href={link.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        whileHover={{ scale: 1.1 }}
+                                        className="w-10 h-10 bg-white/10 flex items-center justify-center hover:bg-[var(--color-burgundy)] transition-colors"
+                                        title={link.platform}
+                                    >
+                                        {getIcon(link.platform)}
+                                    </motion.a>
+                                ))
+                            ) : (
+                                // Fallback to legacy instagramUrl if no dynamic links
+                                instagramUrl && (
+                                    <motion.a
+                                        href={instagramUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        whileHover={{ scale: 1.1 }}
+                                        className="w-10 h-10 bg-white/10 flex items-center justify-center hover:bg-[var(--color-burgundy)] transition-colors"
+                                    >
+                                        <Instagram size={18} />
+                                    </motion.a>
+                                )
                             )}
                         </div>
                     </div>
                 </div>
+
 
                 {/* Bottom Bar */}
                 <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">

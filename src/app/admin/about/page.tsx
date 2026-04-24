@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft, Save, Loader2 } from "lucide-react";
 import Link from "next/link";
+import ImageUpload from "@/components/admin/ImageUpload";
+
 
 interface AboutData {
     id: string;
@@ -14,6 +16,7 @@ interface AboutData {
     description: string;
     ctaText: string;
     imageUrl: string | null;
+    secondaryImageUrl: string | null;
     quote: string | null;
 }
 
@@ -154,16 +157,20 @@ export default function AdminAboutPage() {
                         />
                     </div>
 
-                    <div>
-                        <label className="block text-xs font-medium tracking-widest uppercase text-[var(--color-text-muted)] mb-2">About Image URL</label>
-                        <input
-                            type="text"
+                    {/* Image Uploads */}
+                    <div className="grid md:grid-cols-2 gap-6">
+                        <ImageUpload
+                            label="Main About Image"
                             value={data.imageUrl || ""}
-                            onChange={(e) => setData({ ...data, imageUrl: e.target.value })}
-                            placeholder="/nicole-about.png"
-                            className="w-full px-4 py-3 border border-[var(--color-cream-dark)] focus:border-[var(--color-burgundy)] focus:outline-none transition-colors bg-white dark:bg-[var(--color-cream)]"
+                            onChange={(url) => setData({ ...data, imageUrl: url })}
+                        />
+                        <ImageUpload
+                            label="Secondary/Background Image"
+                            value={data.secondaryImageUrl || ""}
+                            onChange={(url) => setData({ ...data, secondaryImageUrl: url })}
                         />
                     </div>
+
 
                     <div>
                         <label className="block text-xs font-medium tracking-widest uppercase text-[var(--color-text-muted)] mb-2">Quote</label>

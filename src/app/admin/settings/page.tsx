@@ -4,8 +4,14 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowLeft, Save, Loader2 } from "lucide-react";
+import { ArrowLeft, Save, Loader2, Plus, Trash2 } from "lucide-react";
 import Link from "next/link";
+
+interface SocialLink {
+    platform: string;
+    url: string;
+    iconName?: string | null;
+}
 
 interface SettingsData {
     id: string;
@@ -13,6 +19,7 @@ interface SettingsData {
     contactEmail: string;
     instagramUrl: string | null;
     phoneNumber: string | null;
+    socialLinks: SocialLink[];
 }
 
 export default function AdminSettingsPage() {
@@ -133,7 +140,6 @@ export default function AdminSettingsPage() {
                         />
                     </div>
 
-
                     <div>
                         <label className="block text-xs font-medium tracking-widest uppercase text-[var(--color-text-muted)] mb-2">Phone Number</label>
                         <input
@@ -145,13 +151,84 @@ export default function AdminSettingsPage() {
                     </div>
 
                     <div>
-                        <label className="block text-xs font-medium tracking-widest uppercase text-[var(--color-text-muted)] mb-2">Instagram URL</label>
+                        <label className="block text-xs font-medium tracking-widest uppercase text-[var(--color-text-muted)] mb-2">Instagram URL (Legacy)</label>
                         <input
                             type="url"
                             value={data.instagramUrl || ""}
                             onChange={(e) => setData({ ...data, instagramUrl: e.target.value })}
                             className="w-full px-4 py-3 border border-[var(--color-cream-dark)] focus:border-[var(--color-burgundy)] focus:outline-none transition-colors bg-white dark:bg-[var(--color-cream)]"
                         />
+                    </div>
+
+                    {/* Dynamic Social Links */}
+                    <div className="pt-8 border-t border-[var(--color-cream-dark)]">
+                        <div className="flex items-center justify-between mb-6">
+                            <h3 className="text-sm font-semibold tracking-widest uppercase text-[var(--color-text-dark)]">Social Media Profiles</h3>
+                            <button
+                                onClick={() => setData({
+                                    ...data,
+                                    socialLinks: [...(data.socialLinks || []), { platform: "Instagram", url: "" }]
+                                })}
+                                className="flex items-center gap-2 text-xs uppercase tracking-widest text-[var(--color-burgundy)] hover:text-[var(--color-burgundy-dark)] transition-colors"
+                            >
+                                <Plus size={14} /> Add Social
+                            </button>
+                        </div>
+
+                        <div className="space-y-4">
+                            {(data.socialLinks || []).map((link, index) => (
+                                <div key={index} className="flex gap-4 items-end bg-gray-50 dark:bg-black/5 p-4 border border-[var(--color-cream-dark)]">
+                                    <div className="flex-1 space-y-4 md:space-y-0 md:flex md:gap-4">
+                                        <div className="flex-1">
+                                            <label className="block text-[10px] font-medium tracking-widest uppercase text-[var(--color-text-muted)] mb-1">Platform</label>
+                                            <select
+                                                value={link.platform}
+                                                onChange={(e) => {
+                                                    const newLinks = [...data.socialLinks];
+                                                    newLinks[index].platform = e.target.value;
+                                                    setData({ ...data, socialLinks: newLinks });
+                                                }}
+                                                className="w-full px-3 py-2 border border-[var(--color-cream-dark)] focus:border-[var(--color-burgundy)] focus:outline-none transition-colors bg-white dark:bg-[var(--color-cream)] text-sm"
+                                            >
+                                                <option value="Instagram">Instagram</option>
+                                                <option value="LinkedIn">LinkedIn</option>
+                                                <option value="Twitter">Twitter</option>
+                                                <option value="Github">Github</option>
+                                                <option value="Website">Website</option>
+                                                <option value="WhatsApp">WhatsApp</option>
+                                            </select>
+                                        </div>
+                                        <div className="flex-[2]">
+                                            <label className="block text-[10px] font-medium tracking-widest uppercase text-[var(--color-text-muted)] mb-1">URL</label>
+                                            <input
+                                                type="url"
+                                                value={link.url}
+                                                onChange={(e) => {
+                                                    const newLinks = [...data.socialLinks];
+                                                    newLinks[index].url = e.target.value;
+                                                    setData({ ...data, socialLinks: newLinks });
+                                                }}
+                                                placeholder="https://..."
+                                                className="w-full px-3 py-2 border border-[var(--color-cream-dark)] focus:border-[var(--color-burgundy)] focus:outline-none transition-colors bg-white dark:bg-[var(--color-cream)] text-sm"
+                                            />
+                                        </div>
+                                    </div>
+                                    <button
+                                        onClick={() => {
+                                            const newLinks = data.socialLinks.filter((_, i) => i !== index);
+                                            setData({ ...data, socialLinks: newLinks });
+                                        }}
+                                        className="p-2 text-red-500 hover:text-red-700 transition-colors"
+                                    >
+                                        <Trash2 size={18} />
+                                    </button>
+                                </div>
+                            ))}
+
+                            {(data.socialLinks || []).length === 0 && (
+                                <p className="text-xs text-[var(--color-text-muted)] italic text-center py-4">No social profiles added yet.</p>
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>

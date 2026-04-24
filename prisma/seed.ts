@@ -25,31 +25,50 @@ async function main() {
   // 2. Hero Content
   await prisma.heroContent.upsert({
     where: { id: "hero-1" },
-    update: {},
+    update: {
+      headline: "HI, I'm Nicole",
+      subtitle: "Experienced Virtual Assistant dedicated to streamlining your business operations and enhancing productivity through efficient administrative support.",
+      ctaText: "Work With Me",
+      imageUrl: "/nicole-hero.png",
+      secondaryImageUrl: "/nicole-hero-2.png",
+      studentsCount: "100+",
+      roleTitle: "Expert Virtual Assistant",
+      roleSubtitle: "Strategic Business Partner",
+    },
     create: {
       id: "hero-1",
       headline: "HI, I'm Nicole",
-      subtitle: "Lifestyle Influencer & Content Creator",
+      subtitle: "Experienced Virtual Assistant dedicated to streamlining your business operations and enhancing productivity through efficient administrative support.",
       ctaText: "Work With Me",
       imageUrl: "/nicole-hero.png",
-      studentsCount: "500K+",
-      roleTitle: "Your Style & Lifestyle Muse",
-      roleSubtitle: "Lifestyle Influencer & Content Creator",
+      secondaryImageUrl: "/nicole-hero-2.png",
+      studentsCount: "100+",
+      roleTitle: "Expert Virtual Assistant",
+      roleSubtitle: "Strategic Business Partner",
     },
   });
 
   // 3. About Content
   await prisma.aboutContent.upsert({
     where: { id: "about-1" },
-    update: {},
+    update: {
+      introLine: "Hey, I'm Nicole",
+      headline: "Expert Virtual Assistant & Strategic Business Partner",
+      description: "I specialize in providing high-level administrative support and strategic operations management to help entrepreneurs and businesses scale efficiently.\n\nWhether you need calendar management, process optimization, or executive-level assistance, I'm here to ensure your business runs smoothly so you can focus on your vision.",
+      ctaText: "Work With Me",
+      imageUrl: "/nicole-about.png",
+      secondaryImageUrl: "/nicole-about-2.png",
+      quote: "Streamlining your business operations with precision and professional excellence.",
+    },
     create: {
       id: "about-1",
       introLine: "Hey, I'm Nicole",
-      headline: "Influencer, Content Creator, and Your Lifestyle Muse",
-      description: "I remember the moment I decided to share my authentic self with the world. That's when everything changed.\n\nIf you've ever felt uninspired or stuck in a rut – you're not alone. I've been there. Now, I'm here to inspire you to embrace your unique style, live authentically, and create a life that feels exciting, beautiful, and so you.",
+      headline: "Expert Virtual Assistant & Strategic Business Partner",
+      description: "I specialize in providing high-level administrative support and strategic operations management to help entrepreneurs and businesses scale efficiently.\n\nWhether you need calendar management, process optimization, or executive-level assistance, I'm here to ensure your business runs smoothly so you can focus on your vision.",
       ctaText: "Work With Me",
       imageUrl: "/nicole-about.png",
-      quote: "I inspire others to embrace their authentic style and live their best life with grace.",
+      secondaryImageUrl: "/nicole-about-2.png",
+      quote: "Streamlining your business operations with precision and professional excellence.",
     },
   });
 
@@ -57,35 +76,35 @@ async function main() {
   const services = [
     {
       id: "service-1",
-      title: "Content Creation",
-      description: "High-quality photo and video content for brands looking to connect with their audience authentically.",
-      iconName: "Camera",
+      title: "Administrative Support",
+      description: "Comprehensive executive-level assistance to keep your business running smoothly.",
+      iconName: "Calendar",
       order: 1,
-      features: ["Photo shoots", "Video content", "Behind-the-scenes", "Product showcases"],
+      features: ["Calendar Management", "Email Organization", "Travel Planning", "Data Entry"],
     },
     {
       id: "service-2",
-      title: "Brand Collaborations",
-      description: "Strategic partnerships that align with my values and resonate with my engaged community.",
-      iconName: "Users",
+      title: "Social Media Management",
+      description: "Strategic planning and execution for your social media platforms.",
+      iconName: "Share2",
       order: 2,
-      features: ["Sponsored posts", "Brand ambassadorship", "Campaign features", "Product launches"],
+      features: ["Content Scheduling", "Engagement", "Basic Analytics", "Visual Assets"],
     },
     {
       id: "service-3",
-      title: "Social Media Consulting",
-      description: "Guidance on building an authentic social media presence that attracts and engages your ideal audience.",
-      iconName: "Megaphone",
+      title: "Process Optimization",
+      description: "Building systems and workflows that save you time and money.",
+      iconName: "Settings",
       order: 3,
-      features: ["Strategy sessions", "Content planning", "Growth tips", "Engagement tactics"],
+      features: ["Workflow Creation", "Tool Integration", "SOP Development", "Audit & Review"],
     },
     {
       id: "service-4",
-      title: "Speaking Engagements",
-      description: "Inspiring talks on personal branding, authenticity, and building a lifestyle brand.",
-      iconName: "Mic",
+      title: "Project Management",
+      description: "Overseeing tasks and projects from inception to completion.",
+      iconName: "Layout",
       order: 4,
-      features: ["Keynote speeches", "Panel discussions", "Workshop hosting", "Event appearances"],
+      features: ["Task Tracking", "Team Coordination", "Deadline Monitoring", "Resource Allocation"],
     },
   ];
 
@@ -106,18 +125,18 @@ async function main() {
 
   // 5. Skills
   const skills = [
-    { id: "skill-1", name: "Storytelling", description: "Crafting compelling narratives that resonate", category: "Creative", level: 0, order: 1 },
-    { id: "skill-2", name: "Communication", description: "Clear, authentic, and engaging interactions", category: "Creative", level: 0, order: 2 },
-    { id: "skill-3", name: "Creativity", description: "Fresh ideas and unique perspectives", category: "Creative", level: 0, order: 3 },
-    { id: "skill-4", name: "Adaptability", description: "Thriving across platforms and trends", category: "Creative", level: 0, order: 4 },
-    { id: "skill-5", name: "Connection", description: "Building genuine community relationships", category: "Creative", level: 0, order: 5 },
-    { id: "skill-6", name: "Authenticity", description: "Staying true to personal values", category: "Creative", level: 0, order: 6 },
-    { id: "skill-7", name: "Photography", description: null, category: "Technical", level: 95, order: 7 },
-    { id: "skill-8", name: "Video Editing", description: null, category: "Technical", level: 90, order: 8 },
-    { id: "skill-9", name: "Social Media Strategy", description: null, category: "Technical", level: 95, order: 9 },
-    { id: "skill-10", name: "Content Planning", description: null, category: "Technical", level: 90, order: 10 },
-    { id: "skill-11", name: "Brand Development", description: null, category: "Technical", level: 85, order: 11 },
-    { id: "skill-12", name: "Community Management", description: null, category: "Technical", level: 90, order: 12 },
+    { id: "skill-1", name: "Efficiency", description: "Maximizing output while minimizing waste", category: "Creative", level: 0, order: 1 },
+    { id: "skill-2", name: "Communication", description: "Clear, professional, and timely interactions", category: "Creative", level: 0, order: 2 },
+    { id: "skill-3", name: "Problem Solving", description: "Identifying and resolving operational bottlenecks", category: "Creative", level: 0, order: 3 },
+    { id: "skill-4", name: "Adaptability", description: "Thriving in fast-paced business environments", category: "Creative", level: 0, order: 4 },
+    { id: "skill-5", name: "Organization", description: "Impeccable management of details and deadlines", category: "Creative", level: 0, order: 5 },
+    { id: "skill-6", name: "Discretion", description: "Handling sensitive business information with care", category: "Creative", level: 0, order: 6 },
+    { id: "skill-7", name: "CRM Management", description: null, category: "Technical", level: 95, order: 7 },
+    { id: "skill-8", name: "Project Tools (Asana/Trello)", description: null, category: "Technical", level: 90, order: 8 },
+    { id: "skill-9", name: "Email Marketing Tools", description: null, category: "Technical", level: 95, order: 9 },
+    { id: "skill-10", name: "Spreadsheet Proficiency", description: null, category: "Technical", level: 90, order: 10 },
+    { id: "skill-11", name: "Tool Integration", description: null, category: "Technical", level: 85, order: 11 },
+    { id: "skill-12", name: "Process Automation", description: null, category: "Technical", level: 90, order: 12 },
   ];
 
   for (const sk of skills) {

@@ -18,24 +18,28 @@ model Admin {
 }
 
 model HeroContent {
-  id            String  @id @default(cuid())
-  headline      String
-  subtitle      String
-  ctaText       String
-  imageUrl      String?
-  studentsCount String?
-  roleTitle     String?
-  roleSubtitle  String?
+  id                String   @id @default(cuid())
+  headline          String   @default("HI, I'm Nicole")
+  subtitle          String?  @default("Experienced Virtual Assistant dedicated to streamlining your business operations.")
+  ctaText           String   @default("Work With Me")
+  imageUrl          String?  @default("/nicole-hero.png")
+  secondaryImageUrl String?  @default("/nicole-hero-2.png")
+  studentsCount     String?  @default("100+")
+  roleTitle         String?  @default("Expert Virtual Assistant")
+  roleSubtitle      String?  @default("Strategic Business Partner")
+  updatedAt         DateTime @default(now()) @updatedAt
 }
 
 model AboutContent {
-  id          String  @id @default(cuid())
-  introLine   String
-  headline    String
-  description String
-  ctaText     String
-  imageUrl    String?
-  quote       String?
+  id                String   @id @default(cuid())
+  introLine         String   @default("Hey, I'm Nicole")
+  headline          String   @default("Expert Virtual Assistant & Strategic Partner")
+  description       String   @default("...")
+  ctaText           String   @default("Work With Me")
+  imageUrl          String?  @default("/nicole-about.png")
+  secondaryImageUrl String?  @default("/nicole-about-2.png")
+  quote             String?  @default("...")
+  updatedAt         DateTime @default(now()) @updatedAt
 }
 
 model Service {
@@ -77,12 +81,24 @@ model Value {
 }
 
 model SiteSettings {
-  id           String  @id @default(cuid())
+  id           String       @id @default(cuid())
   ownerName    String
   contactEmail String
   phoneNumber  String?
   instagramUrl String?
+  socialLinks  SocialLink[]
 }
+
+model SocialLink {
+  id             String       @id @default(cuid())
+  platform       String
+  url            String
+  iconName       String?
+  order          Int          @default(0)
+  siteSettings   SiteSettings @relation(fields: [siteSettingsId], references: [id], onDelete: Cascade)
+  siteSettingsId String
+}
+
 
 model BlogPost {
   id        String   @id @default(cuid())

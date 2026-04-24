@@ -10,11 +10,18 @@ const updateSettingsSchema = z.object({
     contactEmail: z.string().email("Valid contact email is required"),
     phoneNumber: z.string().optional().nullable(),
     instagramUrl: z.string().optional().nullable(),
+    socialLinks: z.array(z.object({
+        platform: z.string(),
+        url: z.string(),
+        iconName: z.string().optional().nullable(),
+    })).optional(),
 });
 
 export async function GET() {
     try {
-        const settings = await prisma.siteSettings.findFirst();
+        const settings = await prisma.siteSettings.findFirst({
+            include: { socialLinks: { orderBy: { order: 'asc' } } }
+        });
         return NextResponse.json(settings);
     } catch (error) {
         console.error("Error fetching settings:", error);
@@ -38,16 +45,38 @@ export async function PUT(request: Request) {
             );
         }
 
-        const { id, ownerName, contactEmail, phoneNumber, instagramUrl } = parsed.data;
+        const { id, ownerName, contactEmail, phoneNumber, instagramUrl, socialLinks } = parsed.data;
 
-        const settings = await prisma.siteSettings.update({
-            where: { id },
-            data: {
-                ownerName,
-                contactEmail,
-                phoneNumber,
-                instagramUrl,
-            },
+        // Transaction to update settings and sync social links
+        const settings = await prisma.$transaction(async (tx) => {
+            if (socialLinks) {
+                // Delete existing ones
+                await tx.socialLink.deleteMany({
+                    where: { siteSettingsId: id }
+                });
+
+                // Create new ones
+                if (socialLinks.length > 0) {
+                    await tx.socialLink.createMany({
+                        data: socialLinks.map((link, index) => ({
+                            ...link,
+                            siteSettingsId: id,
+                            order: index
+                        }))
+                    });
+                }
+            }
+
+            return await tx.siteSettings.update({
+                where: { id },
+                data: {
+                    ownerName,
+                    contactEmail,
+                    phoneNumber,
+                    instagramUrl,
+                },
+                include: { socialLinks: true }
+            });
         });
 
         revalidatePath("/");

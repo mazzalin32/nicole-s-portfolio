@@ -8,6 +8,7 @@ interface HeroProps {
     subtitle?: string;
     ctaText?: string;
     imageUrl?: string;
+    secondaryImageUrl?: string | null;
     studentsCount?: string;
     roleTitle?: string;
     roleSubtitle?: string;
@@ -15,12 +16,13 @@ interface HeroProps {
 
 export default function Hero({
     headline: _headline = "HI, I'm Nicole",
-    subtitle: _subtitle = "Lifestyle Influencer & Content Creator",
+    subtitle: _subtitle = "Experienced Virtual Assistant dedicated to streamlining your business operations and enhancing productivity through efficient administrative support.",
     ctaText = "Work With Me",
     imageUrl = "/nicole-hero.png",
-    studentsCount = "500K+",
-    roleTitle: _roleTitle = "Your Style & Lifestyle Muse",
-    roleSubtitle: _roleSubtitle = "Lifestyle Influencer & Content Creator",
+    secondaryImageUrl = "/nicole-hero-2.png",
+    studentsCount = "100+",
+    roleTitle: _roleTitle = "Expert Virtual Assistant",
+    roleSubtitle: _roleSubtitle = "Strategic Business Partner",
 }: HeroProps) {
     return (
         <section
@@ -65,6 +67,13 @@ export default function Hero({
                             </div>
                         </div>
 
+                        {/* Bio / Description */}
+                        {_subtitle && (
+                            <p className="text-sm md:text-base text-[var(--color-text-dark)] leading-relaxed max-w-md">
+                                {_subtitle}
+                            </p>
+                        )}
+
                         {/* CTA Button */}
                         <motion.a
                             href="#contact"
@@ -74,6 +83,7 @@ export default function Hero({
                         >
                             {ctaText}
                         </motion.a>
+
                     </motion.div>
 
                     {/* Right - Hero Image */}
@@ -86,12 +96,23 @@ export default function Hero({
                         <div className="relative aspect-[3/4] lg:aspect-[4/5] w-full max-w-lg mx-auto lg:ml-auto">
                             <Image
                                 src={imageUrl}
-                                alt="Nicole - Lifestyle Influencer"
+                                alt="Nicole - Virtual Assistant"
                                 fill
                                 className="object-cover object-top"
                                 priority
                                 sizes="(max-width: 768px) 100vw, 50vw"
                             />
+                            {/* Decorative Element / Secondary Image */}
+                            <div className="absolute -bottom-6 -left-6 w-32 h-40 lg:w-40 lg:h-52 bg-[var(--color-burgundy)] -z-10 overflow-hidden">
+                                {secondaryImageUrl && (
+                                    <Image
+                                        src={secondaryImageUrl}
+                                        alt="Decorative"
+                                        fill
+                                        className="object-cover opacity-80"
+                                    />
+                                )}
+                            </div>
                         </div>
                     </motion.div>
                 </div>
