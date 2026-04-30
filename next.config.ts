@@ -15,6 +15,14 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "placehold.co",
       },
+      {
+        protocol: "https",
+        hostname: "1drv.ms",
+      },
+      {
+        protocol: "https",
+        hostname: "**.live.com",
+      },
     ],
   },
 };

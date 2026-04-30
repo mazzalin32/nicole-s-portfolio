@@ -12,6 +12,7 @@
   --color-brown-light: #A68A5B;
   --color-text-dark: #1A1A1A;
   --color-text-muted: #6B6B6B;
+  --color-card-bg: #FFFFFF;
 
   /* Typography */
   --font-serif: 'Playfair Display', Georgia, serif;
@@ -39,7 +40,7 @@
   --color-text-dark: #EDEDED;
   /* Off-white text */
   --color-text-muted: #9CA3AF;
-  /* Muted gray */
+  --color-card-bg: #1A1A1A;
 }
 
 .pink {
@@ -61,7 +62,7 @@
   --color-text-dark: #420815;
   /* Very Dark Red/Brown for text visibility */
   --color-text-muted: #8B3A4F;
-  /* Muted but readable Pink/Red */
+  --color-card-bg: #FFD1DC;
 }
 
 /* Base styles */

@@ -22,9 +22,12 @@ const dancingScript = Dancing_Script({
 });
 
 export const metadata: Metadata = {
-  title: "Nicole | Lifestyle Influencer & Content Creator",
+  title: "Nicole | Virtual Assistant & Administrative Professional",
   description:
-    "Hi, I'm Nicole. Lifestyle influencer and content creator inspiring you to live your best life with style, authenticity, and grace.",
+    "Expert Virtual Assistant and Administrative Professional providing strategic support in operations, finance, and stakeholder engagement.",
+  icons: {
+    icon: "/icon.png",
+  },
 };
 
 export default function RootLayout({

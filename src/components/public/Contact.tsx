@@ -19,6 +19,7 @@ export default function Contact({
         name: "",
         email: "",
         subject: "",
+        otherSubject: "",
         message: "",
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -38,7 +39,7 @@ export default function Contact({
             if (!res.ok) throw new Error("Failed to send message");
 
             setIsSubmitted(true);
-            setFormData({ name: "", email: "", subject: "", message: "" });
+            setFormData({ name: "", email: "", subject: "", otherSubject: "", message: "" });
             setTimeout(() => setIsSubmitted(false), 5000);
         } catch (error) {
             console.error(error);
@@ -182,7 +183,7 @@ export default function Contact({
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.2 }}
                     >
-                        <div className="bg-white dark:bg-white/5 border border-[var(--color-cream-dark)] p-8 shadow-sm dark:shadow-none pink:border-[var(--color-burgundy)] [.pink_&]:bg-[#FFE4E1]">
+                        <div className="bg-[var(--color-card-bg)] border border-[var(--color-cream-dark)] p-8 shadow-sm pink:border-[var(--color-burgundy)]">
                             <form onSubmit={handleSubmit} className="space-y-6">
                                 <div className="grid md:grid-cols-2 gap-6">
                                     <div>
@@ -194,7 +195,7 @@ export default function Contact({
                                             value={formData.name}
                                             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                             required
-                                            className="w-full px-4 py-3 border border-gray-200 focus:border-[var(--color-burgundy)] focus:outline-none transition-colors bg-white text-zinc-900 placeholder:text-zinc-400 dark:bg-zinc-900 dark:border-zinc-800 dark:text-white [.pink_&]:bg-white [.pink_&]:text-[#420815] [.pink_&]:placeholder-[#A32A48] [.pink_&]:border-[#D1476B]"
+                                            className="w-full px-4 py-3 border border-[var(--color-cream-dark)] focus:border-[var(--color-burgundy)] focus:outline-none transition-colors bg-[var(--color-card-bg)] text-[var(--color-text-dark)] placeholder:text-[var(--color-text-muted)]"
                                             placeholder="Your name"
                                         />
                                     </div>
@@ -207,7 +208,7 @@ export default function Contact({
                                             value={formData.email}
                                             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                                             required
-                                            className="w-full px-4 py-3 border border-gray-200 focus:border-[var(--color-burgundy)] focus:outline-none transition-colors bg-white text-zinc-900 placeholder:text-zinc-400 dark:bg-zinc-900 dark:border-zinc-800 dark:text-white [.pink_&]:bg-white [.pink_&]:text-[#420815] [.pink_&]:placeholder-[#A32A48] [.pink_&]:border-[#D1476B]"
+                                            className="w-full px-4 py-3 border border-[var(--color-cream-dark)] focus:border-[var(--color-burgundy)] focus:outline-none transition-colors bg-[var(--color-card-bg)] text-[var(--color-text-dark)] placeholder:text-[var(--color-text-muted)]"
                                             placeholder="your@email.com"
                                         />
                                     </div>
@@ -221,15 +222,38 @@ export default function Contact({
                                         value={formData.subject}
                                         onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                                         required
-                                        className="w-full px-4 py-3 border border-gray-200 focus:border-[var(--color-burgundy)] focus:outline-none transition-colors bg-white text-zinc-900 dark:bg-zinc-900 dark:border-zinc-800 dark:text-white [.pink_&]:bg-white [.pink_&]:text-[#420815] [.pink_&]:border-[#D1476B]"
+                                        className="w-full px-4 py-3 border border-[var(--color-cream-dark)] focus:border-[var(--color-burgundy)] focus:outline-none transition-colors bg-[var(--color-card-bg)] text-[var(--color-text-dark)]"
                                     >
-                                        <option value="">Select a topic</option>
-                                        <option value="brand-collaboration">Brand Collaboration</option>
-                                        <option value="speaking">Speaking Engagement</option>
-                                        <option value="consulting">Social Media Consulting</option>
-                                        <option value="other">Other</option>
+                                        <option value="">Select a service</option>
+                                        <option value="administrative-support">Administrative Support</option>
+                                        <option value="financial-admin">Financial Administration</option>
+                                        <option value="operations-management">Operations Management</option>
+                                        <option value="stakeholder-engagement">Stakeholder Engagement</option>
+                                        <option value="customer-support">Customer Support</option>
+                                        <option value="project-management">Project Management</option>
+                                        <option value="other">Other (Please specify)</option>
                                     </select>
                                 </div>
+
+                                {formData.subject === "other" && (
+                                    <motion.div
+                                        initial={{ opacity: 0, height: 0 }}
+                                        animate={{ opacity: 1, height: "auto" }}
+                                        className="space-y-2"
+                                    >
+                                        <label className="block text-xs font-medium tracking-widest uppercase text-[var(--color-text-muted)]">
+                                            Please specify
+                                        </label>
+                                        <input
+                                            type="text"
+                                            value={formData.otherSubject}
+                                            onChange={(e) => setFormData({ ...formData, otherSubject: e.target.value })}
+                                            required
+                                            className="w-full px-4 py-3 border border-[var(--color-cream-dark)] focus:border-[var(--color-burgundy)] focus:outline-none transition-colors bg-[var(--color-card-bg)] text-[var(--color-text-dark)] placeholder:text-[var(--color-text-muted)]"
+                                            placeholder="What service do you need?"
+                                        />
+                                    </motion.div>
+                                )}
 
                                 <div>
                                     <label className="block text-xs font-medium tracking-widest uppercase text-[var(--color-text-muted)] mb-2">
@@ -240,7 +264,7 @@ export default function Contact({
                                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                                         required
                                         rows={5}
-                                        className="w-full px-4 py-3 border border-gray-200 focus:border-[var(--color-burgundy)] focus:outline-none transition-colors resize-none bg-white text-zinc-900 placeholder:text-zinc-400 dark:bg-zinc-900 dark:border-zinc-800 dark:text-white [.pink_&]:bg-white [.pink_&]:text-[#420815] [.pink_&]:placeholder-[#A32A48] [.pink_&]:border-[#D1476B]"
+                                        className="w-full px-4 py-3 border border-[var(--color-cream-dark)] focus:border-[var(--color-burgundy)] focus:outline-none transition-colors resize-none bg-[var(--color-card-bg)] text-[var(--color-text-dark)] placeholder:text-[var(--color-text-muted)]"
                                         placeholder="Tell me about your project or idea..."
                                     />
                                 </div>

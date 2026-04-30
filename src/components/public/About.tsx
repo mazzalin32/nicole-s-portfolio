@@ -39,9 +39,8 @@ Whether you need calendar management, process optimization, or executive-level a
                         transition={{ duration: 0.8, ease: "easeOut" }}
                         className="relative"
                     >
-                        {/* Main Image with Burgundy Card Overlay */}
                         <div className="relative">
-                            <div className="aspect-[3/4] w-full max-w-md relative z-10">
+                            <div className="aspect-[3/4] w-full max-w-md relative z-10 border border-[var(--color-cream-dark)] shadow-sm">
                                 <Image
                                     src={imageUrl}
                                     alt="Nicole - Virtual Assistant"
@@ -51,20 +50,8 @@ Whether you need calendar management, process optimization, or executive-level a
                                 />
                             </div>
 
-                            {/* Secondary Image behind */}
-                            {secondaryImageUrl && (
-                                <div className="absolute -top-6 -left-6 w-48 h-64 bg-[var(--color-burgundy)] z-0 overflow-hidden">
-                                    <Image
-                                        src={secondaryImageUrl}
-                                        alt="Decorative"
-                                        fill
-                                        className="object-cover opacity-60"
-                                    />
-                                </div>
-                            )}
-
-                            {/* Overlapping Burgundy Card */}
-                            <div className="absolute -bottom-8 -right-8 lg:-right-16 w-48 lg:w-64 bg-[var(--color-burgundy)] p-6 text-white">
+                            {/* Overlapping Burgundy Card - Fixed z-index to be on top */}
+                            <div className="absolute -bottom-8 -right-8 lg:-right-16 w-48 lg:w-64 bg-[var(--color-burgundy)] p-6 text-white shadow-xl z-20">
                                 <p className="text-xs italic leading-relaxed" style={{ fontFamily: 'var(--font-script)' }}>
                                     &ldquo;{quote}&rdquo;
                                 </p>

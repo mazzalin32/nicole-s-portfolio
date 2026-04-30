@@ -81,7 +81,7 @@ export default function Services({ services = [] }: ServiceProps) {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                                className="bg-white dark:bg-white/5 p-8 border border-[var(--color-cream-dark)] hover:border-[var(--color-burgundy)] transition-colors group pink:border-[var(--color-burgundy-light)] pink:shadow-sm"
+                                className="bg-[var(--color-card-bg)] p-8 border border-[var(--color-cream-dark)] hover:border-[var(--color-burgundy)] transition-colors group pink:border-[var(--color-burgundy-light)] pink:shadow-sm"
                             >
                                 <IconComponent
                                     className="text-[var(--color-burgundy)] mb-6 group-hover:scale-110 transition-transform"

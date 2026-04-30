@@ -26,87 +26,151 @@ async function main() {
   await prisma.heroContent.upsert({
     where: { id: "hero-1" },
     update: {
-      headline: "HI, I'm Nicole",
-      subtitle: "Experienced Virtual Assistant dedicated to streamlining your business operations and enhancing productivity through efficient administrative support.",
-      ctaText: "Work With Me",
-      imageUrl: "/nicole-hero.png",
-      secondaryImageUrl: "/nicole-hero-2.png",
-      studentsCount: "100+",
-      roleTitle: "Expert Virtual Assistant",
-      roleSubtitle: "Strategic Business Partner",
-    },
+  "headline": "HI, I'm Nicole",
+  "subtitle": "Virtual Assistant with hands-on experience in admin support, financial administration, operations management, and stakeholder engagement — helping businesses and brands streamline operations so you can focus on what matters most.",
+  "ctaText": "Work With Me",
+  "imageUrl": "/uploads/19b2aac9-6ae8-41a2-ac73-c92c06206af6.jpg",
+  "secondaryImageUrl": "/uploads/5f4c47d7-6425-4fcf-8b0b-4e4becaa095b.jpg",
+  "studentsCount": "3,000+ Stakeholders Served",
+  "roleTitle": "Expert Virtual Assistant",
+  "roleSubtitle": "Admin & Operations Support Specialist"
+},
     create: {
-      id: "hero-1",
-      headline: "HI, I'm Nicole",
-      subtitle: "Experienced Virtual Assistant dedicated to streamlining your business operations and enhancing productivity through efficient administrative support.",
-      ctaText: "Work With Me",
-      imageUrl: "/nicole-hero.png",
-      secondaryImageUrl: "/nicole-hero-2.png",
-      studentsCount: "100+",
-      roleTitle: "Expert Virtual Assistant",
-      roleSubtitle: "Strategic Business Partner",
-    },
+  "id": "hero-1",
+  "headline": "HI, I'm Nicole",
+  "subtitle": "Virtual Assistant with hands-on experience in admin support, financial administration, operations management, and stakeholder engagement — helping businesses and brands streamline operations so you can focus on what matters most.",
+  "ctaText": "Work With Me",
+  "imageUrl": "/uploads/19b2aac9-6ae8-41a2-ac73-c92c06206af6.jpg",
+  "secondaryImageUrl": "/uploads/5f4c47d7-6425-4fcf-8b0b-4e4becaa095b.jpg",
+  "studentsCount": "3,000+ Stakeholders Served",
+  "roleTitle": "Expert Virtual Assistant",
+  "roleSubtitle": "Admin & Operations Support Specialist"
+},
   });
 
   // 3. About Content
   await prisma.aboutContent.upsert({
     where: { id: "about-1" },
     update: {
-      introLine: "Hey, I'm Nicole",
-      headline: "Expert Virtual Assistant & Strategic Business Partner",
-      description: "I specialize in providing high-level administrative support and strategic operations management to help entrepreneurs and businesses scale efficiently.\n\nWhether you need calendar management, process optimization, or executive-level assistance, I'm here to ensure your business runs smoothly so you can focus on your vision.",
-      ctaText: "Work With Me",
-      imageUrl: "/nicole-about.png",
-      secondaryImageUrl: "/nicole-about-2.png",
-      quote: "Streamlining your business operations with precision and professional excellence.",
-    },
+  "introLine": "Hey, I'm Nicole",
+  "headline": "Virtual Assistant & Administrative Professional",
+  "description": "I'm a dedicated Virtual Assistant and Administrative Professional with hands-on experience across hospitality, education, and tourism sectors. Currently serving as Campus Administrator at African Leadership University, I manage front desk operations and support a community of over 3,000 stakeholders, maintaining a 99% SLA compliance rate on ticketing and coordinating end-to-end event logistics.\n\nMy background spans admin support, financial administration, operations coordination, and stakeholder engagement, giving me a well-rounded skill set that I bring to every client I support.\n\nTrilingual in English, French, and Kinyarwanda, I'm well-positioned to support clients across diverse and fast-paced environments.`",
+  "ctaText": "Work With Me",
+  "imageUrl": "/nicole-about.png",
+  "secondaryImageUrl": "",
+  "quote": "Every detail managed so you can focus on the bigger picture."
+},
     create: {
-      id: "about-1",
-      introLine: "Hey, I'm Nicole",
-      headline: "Expert Virtual Assistant & Strategic Business Partner",
-      description: "I specialize in providing high-level administrative support and strategic operations management to help entrepreneurs and businesses scale efficiently.\n\nWhether you need calendar management, process optimization, or executive-level assistance, I'm here to ensure your business runs smoothly so you can focus on your vision.",
-      ctaText: "Work With Me",
-      imageUrl: "/nicole-about.png",
-      secondaryImageUrl: "/nicole-about-2.png",
-      quote: "Streamlining your business operations with precision and professional excellence.",
-    },
+  "id": "about-1",
+  "introLine": "Hey, I'm Nicole",
+  "headline": "Virtual Assistant & Administrative Professional",
+  "description": "I'm a dedicated Virtual Assistant and Administrative Professional with hands-on experience across hospitality, education, and tourism sectors. Currently serving as Campus Administrator at African Leadership University, I manage front desk operations and support a community of over 3,000 stakeholders, maintaining a 99% SLA compliance rate on ticketing and coordinating end-to-end event logistics.\n\nMy background spans admin support, financial administration, operations coordination, and stakeholder engagement, giving me a well-rounded skill set that I bring to every client I support.\n\nTrilingual in English, French, and Kinyarwanda, I'm well-positioned to support clients across diverse and fast-paced environments.`",
+  "ctaText": "Work With Me",
+  "imageUrl": "/nicole-about.png",
+  "secondaryImageUrl": "",
+  "quote": "Every detail managed so you can focus on the bigger picture."
+},
   });
 
   // 4. Services & Features
   const services = [
-    {
-      id: "service-1",
-      title: "Administrative Support",
-      description: "Comprehensive executive-level assistance to keep your business running smoothly.",
-      iconName: "Calendar",
-      order: 1,
-      features: ["Calendar Management", "Email Organization", "Travel Planning", "Data Entry"],
-    },
-    {
-      id: "service-2",
-      title: "Social Media Management",
-      description: "Strategic planning and execution for your social media platforms.",
-      iconName: "Share2",
-      order: 2,
-      features: ["Content Scheduling", "Engagement", "Basic Analytics", "Visual Assets"],
-    },
-    {
-      id: "service-3",
-      title: "Process Optimization",
-      description: "Building systems and workflows that save you time and money.",
-      iconName: "Settings",
-      order: 3,
-      features: ["Workflow Creation", "Tool Integration", "SOP Development", "Audit & Review"],
-    },
-    {
-      id: "service-4",
-      title: "Project Management",
-      description: "Overseeing tasks and projects from inception to completion.",
-      iconName: "Layout",
-      order: 4,
-      features: ["Task Tracking", "Team Coordination", "Deadline Monitoring", "Resource Allocation"],
-    },
-  ];
+  {
+    "id": "va-1",
+    "title": "Administrative Support",
+    "description": "Comprehensive administrative assistance to keep your business organised and running smoothly.",
+    "iconName": "briefcase",
+    "order": 1,
+    "features": [
+      "Calendar Management",
+      "Email Organization",
+      "Travel Planning",
+      "Data Entry & File Organization"
+    ]
+  },
+  {
+    "id": "va-2",
+    "title": "Operations & Financial Administration",
+    "description": "Hands-on support managing your day-to-day operations and financial processes with accuracy and efficiency.",
+    "iconName": "settings",
+    "order": 2,
+    "features": [
+      "Financial Record Management",
+      "Invoice & Payment Processing",
+      "Vendor Coordination",
+      "Reporting & Reconciliation",
+      "SLA Monitoring"
+    ]
+  },
+  {
+    "id": "va-3",
+    "title": "Customer & Stakeholder Support",
+    "description": "Professional communication management to maintain excellent relationships with clients, vendors, and stakeholders.",
+    "iconName": "users",
+    "order": 3,
+    "features": [
+      "Email Management",
+      "Inquiry Handling (Freshdesk, Gmail)",
+      "Stakeholder Engagement",
+      "Complaint Resolution",
+      "Professional Communication"
+    ]
+  },
+  {
+    "id": "va-4",
+    "title": "Project & Task Management",
+    "description": "Overseeing tasks and projects from inception to completion, ensuring deadlines are consistently met.",
+    "iconName": "clipboard-list",
+    "order": 4,
+    "features": [
+      "Task Tracking (Jira, Trello)",
+      "Team Coordination",
+      "Deadline Monitoring",
+      "Resource Allocation",
+      "Progress Reporting"
+    ]
+  },
+  {
+    "id": "cmodlapiw000j04kww6hd7jm7",
+    "title": "Process Optimization",
+    "description": "Building systems and workflows that save you time, reduce errors, and scale with your business.",
+    "iconName": "zap",
+    "order": 5,
+    "features": [
+      "Workflow Creation",
+      "Tool Integration",
+      "SOP Development",
+      "Audit & Review"
+    ]
+  },
+  {
+    "id": "cmodlaq45000o04kwrai896nd",
+    "title": "Helpdesk & Ticket Management",
+    "description": "Responsive helpdesk support that keeps your inbox and ticketing system running efficiently.",
+    "iconName": "headphones",
+    "order": 6,
+    "features": [
+      "Freshdesk Ticket Management",
+      "SLA Compliance Monitoring",
+      "Query Categorisation & Prioritisation",
+      "Escalation Handling",
+      "Reporting & Analytics"
+    ]
+  },
+  {
+    "id": "cmodlaqph000u04kwotr94mdm",
+    "title": "Travel & Tourism Administration",
+    "description": "End-to-end travel coordination and tourism support for businesses, teams, and clients.",
+    "iconName": "map-pin",
+    "order": 7,
+    "features": [
+      "Itinerary Planning & Coordination",
+      "Transport & Logistics Management",
+      "Hotel & Venue Booking",
+      "Tour Package Research",
+      "New Feature"
+    ]
+  }
+];
 
   for (const s of services) {
     await prisma.service.upsert({
@@ -125,19 +189,119 @@ async function main() {
 
   // 5. Skills
   const skills = [
-    { id: "skill-1", name: "Efficiency", description: "Maximizing output while minimizing waste", category: "Creative", level: 0, order: 1 },
-    { id: "skill-2", name: "Communication", description: "Clear, professional, and timely interactions", category: "Creative", level: 0, order: 2 },
-    { id: "skill-3", name: "Problem Solving", description: "Identifying and resolving operational bottlenecks", category: "Creative", level: 0, order: 3 },
-    { id: "skill-4", name: "Adaptability", description: "Thriving in fast-paced business environments", category: "Creative", level: 0, order: 4 },
-    { id: "skill-5", name: "Organization", description: "Impeccable management of details and deadlines", category: "Creative", level: 0, order: 5 },
-    { id: "skill-6", name: "Discretion", description: "Handling sensitive business information with care", category: "Creative", level: 0, order: 6 },
-    { id: "skill-7", name: "CRM Management", description: null, category: "Technical", level: 95, order: 7 },
-    { id: "skill-8", name: "Project Tools (Asana/Trello)", description: null, category: "Technical", level: 90, order: 8 },
-    { id: "skill-9", name: "Email Marketing Tools", description: null, category: "Technical", level: 95, order: 9 },
-    { id: "skill-10", name: "Spreadsheet Proficiency", description: null, category: "Technical", level: 90, order: 10 },
-    { id: "skill-11", name: "Tool Integration", description: null, category: "Technical", level: 85, order: 11 },
-    { id: "skill-12", name: "Process Automation", description: null, category: "Technical", level: 90, order: 12 },
-  ];
+  {
+    "id": "skill-1",
+    "name": "Communication",
+    "description": "Clear, professional, and empathetic interactions across all channels",
+    "category": "Creative",
+    "level": 0,
+    "order": 1
+  },
+  {
+    "id": "skill-2",
+    "name": "Problem-Solving",
+    "description": "Creative and practical solutions for operational challenges",
+    "category": "Creative",
+    "level": 0,
+    "order": 2
+  },
+  {
+    "id": "skill-3",
+    "name": "Adaptability",
+    "description": "Flexible approach to changing priorities and environments",
+    "category": "Creative",
+    "level": 0,
+    "order": 3
+  },
+  {
+    "id": "skill-4",
+    "name": "Attention to Detail",
+    "description": "Precision and accuracy in every task",
+    "category": "Creative",
+    "level": 0,
+    "order": 4
+  },
+  {
+    "id": "skill-5",
+    "name": "Organisation",
+    "description": "Systematic approach to workflow and records management",
+    "category": "Creative",
+    "level": 0,
+    "order": 5
+  },
+  {
+    "id": "skill-6",
+    "name": "Time Management",
+    "description": "Efficient prioritisation and consistent deadline delivery",
+    "category": "Creative",
+    "level": 0,
+    "order": 6
+  },
+  {
+    "id": "skill-7",
+    "name": "Microsoft Office Suite",
+    "description": null,
+    "category": "Technical",
+    "level": 95,
+    "order": 7
+  },
+  {
+    "id": "skill-8",
+    "name": "Google Workspace",
+    "description": null,
+    "category": "Technical",
+    "level": 95,
+    "order": 8
+  },
+  {
+    "id": "skill-9",
+    "name": "Freshdesk",
+    "description": null,
+    "category": "Technical",
+    "level": 95,
+    "order": 9
+  },
+  {
+    "id": "skill-10",
+    "name": "Trello / Asana",
+    "description": null,
+    "category": "Technical",
+    "level": 90,
+    "order": 10
+  },
+  {
+    "id": "skill-11",
+    "name": "Jira",
+    "description": null,
+    "category": "Technical",
+    "level": 90,
+    "order": 11
+  },
+  {
+    "id": "skill-12",
+    "name": "QuickBooks",
+    "description": null,
+    "category": "Technical",
+    "level": 85,
+    "order": 12
+  },
+  {
+    "id": "cmoe897fn000004jn6kqmt4uc",
+    "name": "Stakeholder Engagement",
+    "description": "Building and maintaining professional relationships",
+    "category": "Creative",
+    "level": 0,
+    "order": 13
+  },
+  {
+    "id": "cmoe897to000104jnv6f1zbmb",
+    "name": "Zoom / Slack / Teams",
+    "description": null,
+    "category": "Technical",
+    "level": 90,
+    "order": 14
+  }
+];
 
   for (const sk of skills) {
     await prisma.skill.upsert({
@@ -148,7 +312,7 @@ async function main() {
   }
 
   // 6. Platforms
-  const platforms = ["Instagram", "TikTok", "YouTube", "Pinterest", "LinkedIn", "Twitter"];
+  const platforms = ["Freshdesk","Trello","Asana","Jira","Google Workspace","Microsoft Office","Calendly","QuickBooks","Canva"];
   await prisma.platform.deleteMany({});
   for (let i = 0; i < platforms.length; i++) {
     await prisma.platform.create({
@@ -158,11 +322,43 @@ async function main() {
 
   // 7. Values
   const values = [
-    { id: "value-1", title: "Authenticity", description: "Being real and genuine in everything I share. I believe in showing up as my true self and inspiring others to do the same – no filters, no facades.", order: 1 },
-    { id: "value-2", title: "Creativity", description: "Pushing boundaries and thinking outside the box. Every piece of content is an opportunity to create something beautiful, meaningful, and inspiring.", order: 2 },
-    { id: "value-3", title: "Connection", description: "Building genuine relationships with my community. It's not about followers – it's about creating real connections and lifting each other up.", order: 3 },
-    { id: "value-4", title: "Inspiration", description: "Empowering others to embrace their unique style and live boldly. My mission is to inspire you to be confident, creative, and unapologetically yourself.", order: 4 },
-  ];
+  {
+    "id": "value-1",
+    "title": "Professionalism",
+    "description": "I hold myself to the highest standards in every interaction, delivering quality work and communicating with clarity and respect.",
+    "order": 1
+  },
+  {
+    "id": "value-2",
+    "title": "Attention to Detail",
+    "description": "I believe precision matters. From data entry to stakeholder communication, I ensure nothing falls through the cracks.",
+    "order": 2
+  },
+  {
+    "id": "value-3",
+    "title": "Reliability",
+    "description": "My clients can rely on me. I fulfil commitments, keep confidentiality, and consistently show up, regardless of the task.",
+    "order": 3
+  },
+  {
+    "id": "value-4",
+    "title": "Efficiency",
+    "description": "I'm always looking for smarter ways to work. I bring structure and process to every project so your time and resources are never wasted.",
+    "order": 4
+  },
+  {
+    "id": "cmoe8fa89000304l4zduiwogl",
+    "title": "Adaptability",
+    "description": "Every client and business is different. I adjust quickly to new environments, tools, and priorities, delivering results regardless of the challenge.",
+    "order": 5
+  },
+  {
+    "id": "cmoe8gbws000404l48lho4sht",
+    "title": "Integrity",
+    "description": "I operate with honesty and transparency in everything I do. You'll always know where things stand and can trust that your business is in good hands.",
+    "order": 6
+  }
+];
 
   for (const v of values) {
     await prisma.value.upsert({
@@ -175,8 +371,14 @@ async function main() {
   // 8. Site Settings
   await prisma.siteSettings.upsert({
     where: { id: "settings-1" },
-    update: { ownerName: adminName, contactEmail: adminEmail },
-    create: { id: "settings-1", ownerName: adminName, contactEmail: adminEmail, phoneNumber: "0792630152", instagramUrl: "https://www.instagram.com/___.ashimwe_?igsh=d291eDF1djE0bjA3" },
+    update: { ownerName: "Liliane Nicole", contactEmail: "nicolerwigamba@gmail.com" },
+    create: { 
+      id: "settings-1", 
+      ownerName: "Liliane Nicole", 
+      contactEmail: "nicolerwigamba@gmail.com",
+      phoneNumber: "+250780465621",
+      instagramUrl: "https://www.instagram.com/nicole_lil7?igsh=azVrYXFwNHZjaDE1&utm_source=qrhttps://www.instagram.com/nicole_lil7?igsh=azVrYXFwNHZjaDE1&utm_source=qr"
+    },
   });
 
   console.log("Database seeded successfully!");
@@ -189,4 +391,5 @@ main()
   })
   .finally(async () => {
     await prisma.$disconnect();
+    await pool.end();
   });

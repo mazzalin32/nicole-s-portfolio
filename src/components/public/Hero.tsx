@@ -93,25 +93,16 @@ export default function Hero({
                         transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
                         className="relative"
                     >
-                        <div className="relative aspect-[3/4] lg:aspect-[4/5] w-full max-w-lg mx-auto lg:ml-auto">
-                            <Image
-                                src={imageUrl}
-                                alt="Nicole - Virtual Assistant"
-                                fill
-                                className="object-cover object-top"
-                                priority
-                                sizes="(max-width: 768px) 100vw, 50vw"
-                            />
-                            {/* Decorative Element / Secondary Image */}
-                            <div className="absolute -bottom-6 -left-6 w-32 h-40 lg:w-40 lg:h-52 bg-[var(--color-burgundy)] -z-10 overflow-hidden">
-                                {secondaryImageUrl && (
-                                    <Image
-                                        src={secondaryImageUrl}
-                                        alt="Decorative"
-                                        fill
-                                        className="object-cover opacity-80"
-                                    />
-                                )}
+                        <div className="flex flex-col gap-6 w-full max-w-lg mx-auto lg:ml-auto">
+                            <div className="relative aspect-[3/4] lg:aspect-[4/5] w-full border border-[var(--color-cream-dark)] shadow-sm">
+                                <Image
+                                    src={imageUrl}
+                                    alt="Nicole - Virtual Assistant"
+                                    fill
+                                    className="object-cover object-top"
+                                    priority
+                                    sizes="(max-width: 768px) 100vw, 50vw"
+                                />
                             </div>
                         </div>
                     </motion.div>

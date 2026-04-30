@@ -53,11 +53,10 @@ export default function ImageUpload({ value, onChange, label }: ImageUploadProps
             <div className="flex items-center gap-4">
                 {value ? (
                     <div className="relative w-40 aspect-[3/4] border border-[var(--color-cream-dark)] bg-gray-50 overflow-hidden">
-                        <Image
+                        <img
                             src={value}
                             alt="Preview"
-                            fill
-                            className="object-cover"
+                            className="w-full h-full object-cover"
                         />
                         <button
                             onClick={() => onChange("")}

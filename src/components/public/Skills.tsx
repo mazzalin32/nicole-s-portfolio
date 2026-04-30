@@ -97,7 +97,7 @@ export default function Skills({ skills = [], platforms = [] }: SkillProps) {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.4, delay: index * 0.05 }}
-                                    className="bg-white dark:bg-white/5 p-5 border border-[var(--color-cream-dark)] pink:border-[var(--color-burgundy-light)] pink:shadow-sm"
+                                    className="bg-[var(--color-card-bg)] p-5 border border-[var(--color-cream-dark)] pink:border-[var(--color-burgundy-light)] pink:shadow-sm"
                                 >
                                     <h4 className="font-medium text-[var(--color-text-dark)] mb-1">
                                         {skill.name}
@@ -162,7 +162,7 @@ export default function Skills({ skills = [], platforms = [] }: SkillProps) {
                                 {displayPlatforms.map((platform) => (
                                     <span
                                         key={platform}
-                                        className="px-4 py-2 bg-white dark:bg-white/5 text-xs text-[var(--color-text-muted)] border border-[var(--color-cream-dark)] pink:border-[var(--color-burgundy-light)]"
+                                        className="px-4 py-2 bg-[var(--color-card-bg)] text-xs text-[var(--color-text-muted)] border border-[var(--color-cream-dark)] pink:border-[var(--color-burgundy-light)]"
                                     >
                                         {platform}
                                     </span>

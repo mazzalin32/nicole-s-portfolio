@@ -10,7 +10,8 @@
     "test": "vitest run",
     "postinstall": "prisma generate",
     "db:seed": "npx tsx prisma/seed.ts",
-    "setup": "npx prisma db push && npm run db:seed"
+    "db:pull": "npx tsx scripts/pull-data.ts",
+    "setup": "npx prisma db push"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
