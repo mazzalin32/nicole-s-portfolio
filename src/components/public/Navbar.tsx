@@ -109,7 +109,7 @@ export default function Navbar({ ownerName = "Nicole" }: NavbarProps) {
                                 </Link>
                             ))}
                             <Link
-                                href="#contact"
+                                href="/#contact"
                                 onClick={() => setIsOpen(false)}
                                 className="mt-4 px-6 py-3 text-center text-xs tracking-widest uppercase bg-[var(--color-burgundy)] text-white"
                             >

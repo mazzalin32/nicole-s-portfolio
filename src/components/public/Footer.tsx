@@ -63,15 +63,11 @@ export default function Footer({
                             Quick Links
                         </h4>
                         <nav className="flex flex-col gap-3">
-                            {["About", "Work With Me", "Contact"].map((link) => (
-                                <Link
-                                    key={link}
-                                    href={`#${link.toLowerCase().replace(/\s+/g, "-")}`}
-                                    className="text-sm text-white/70 hover:text-white transition-colors"
-                                >
-                                    {link}
-                                </Link>
-                            ))}
+                            <Link href="/" className="text-sm text-white/70 hover:text-white transition-colors">Home</Link>
+                            <Link href="/about" className="text-sm text-white/70 hover:text-white transition-colors">About</Link>
+                            <Link href="/services" className="text-sm text-white/70 hover:text-white transition-colors">Services</Link>
+                            <Link href="/skills" className="text-sm text-white/70 hover:text-white transition-colors">Skills</Link>
+                            <Link href="/#contact" className="text-sm text-white/70 hover:text-white transition-colors">Contact</Link>
                         </nav>
                     </div>
 

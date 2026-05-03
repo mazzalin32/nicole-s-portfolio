@@ -121,7 +121,7 @@ export default function Services({ services = [] }: ServiceProps) {
                     className="text-center mt-16"
                 >
                     <a
-                        href="#contact"
+                        href="/#contact"
                         className="inline-block px-8 py-4 bg-[var(--color-burgundy)] text-white text-xs tracking-[0.2em] uppercase hover:bg-[var(--color-burgundy-dark)] transition-colors"
                     >
                         Let&apos;s Collaborate

@@ -126,7 +126,7 @@ Whether you need calendar management, process optimization, or executive-level a
 
                         {/* CTA Button */}
                         <motion.a
-                            href="#contact"
+                            href="/#contact"
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
                             className="inline-block px-8 py-4 bg-[var(--color-burgundy)] text-white text-xs tracking-[0.2em] uppercase hover:bg-[var(--color-burgundy-dark)] transition-colors"
