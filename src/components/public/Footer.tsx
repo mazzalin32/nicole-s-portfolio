@@ -22,7 +22,7 @@ export default function Footer({
     ownerName = "Nicole",
     contactEmail = "ashimwegra12@gmail.com",
     phoneNumber = "0792630152",
-    instagramUrl = "https://www.instagram.com/___.ashimwe_?igsh=d291eDF1djE0bjA3",
+    instagramUrl = "",
     socialLinks = [],
 }: FooterProps) {
     const currentYear = new Date().getFullYear();

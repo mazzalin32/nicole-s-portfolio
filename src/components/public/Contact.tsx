@@ -13,7 +13,7 @@ interface ContactProps {
 export default function Contact({
     contactEmail = "ashimwegra12@gmail.com",
     phoneNumber = "0792630152",
-    instagramUrl = "https://www.instagram.com/___.ashimwe_?igsh=d291eDF1djE0bjA3",
+    instagramUrl = "",
 }: ContactProps) {
     const [formData, setFormData] = useState({
         name: "",
@@ -153,26 +153,28 @@ export default function Contact({
                                 </div>
                             </a>
 
-                            <a
-                                href={instagramUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center gap-4 text-[var(--color-text-dark)] hover:text-[var(--color-burgundy)] transition-colors group"
-                            >
-                                <div className="w-12 h-12 bg-[var(--color-cream-dark)] flex items-center justify-center group-hover:bg-[var(--color-burgundy)] group-hover:text-white transition-all">
-                                    <Instagram size={20} />
-                                </div>
-                                <div>
-                                    <p className="text-xs uppercase tracking-widest text-[var(--color-text-muted)]">
-                                        Instagram
-                                    </p>
-                                    <p className="font-medium">
-                                        {instagramUrl?.includes("instagram.com/") 
-                                            ? `@${instagramUrl.split("instagram.com/")[1].split("?")[0].replace("/", "")}` 
-                                            : "@nicole"}
-                                    </p>
-                                </div>
-                            </a>
+                            {instagramUrl && (
+                                <a
+                                    href={instagramUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center gap-4 text-[var(--color-text-dark)] hover:text-[var(--color-burgundy)] transition-colors group"
+                                >
+                                    <div className="w-12 h-12 bg-[var(--color-cream-dark)] flex items-center justify-center group-hover:bg-[var(--color-burgundy)] group-hover:text-white transition-all">
+                                        <Instagram size={20} />
+                                    </div>
+                                    <div>
+                                        <p className="text-xs uppercase tracking-widest text-[var(--color-text-muted)]">
+                                            Instagram
+                                        </p>
+                                        <p className="font-medium">
+                                            {instagramUrl?.includes("instagram.com/")
+                                                ? `@${instagramUrl.split("instagram.com/")[1].split("?")[0].replace("/", "")}`
+                                                : "@nicole"}
+                                        </p>
+                                    </div>
+                                </a>
+                            )}
                         </div>
                     </motion.div>
 

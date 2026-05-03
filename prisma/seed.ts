@@ -377,7 +377,7 @@ async function main() {
       ownerName: "Liliane Nicole", 
       contactEmail: "nicolerwigamba@gmail.com",
       phoneNumber: "+250780465621",
-      instagramUrl: "https://www.instagram.com/nicole_lil7?igsh=azVrYXFwNHZjaDE1&utm_source=qrhttps://www.instagram.com/nicole_lil7?igsh=azVrYXFwNHZjaDE1&utm_source=qr"
+      instagramUrl: ""
     },
   });
 
