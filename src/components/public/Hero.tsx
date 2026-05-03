@@ -79,7 +79,7 @@ export default function Hero({
                             href="#contact"
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
-                            className="inline-block px-8 py-4 bg-[var(--color-text-dark)] text-white text-xs tracking-[0.2em] uppercase hover:bg-[var(--color-burgundy)] transition-colors"
+                            className="inline-block px-8 py-4 bg-[var(--color-burgundy)] text-white text-xs tracking-[0.2em] uppercase hover:bg-[var(--color-burgundy-dark)] transition-colors"
                         >
                             {ctaText}
                         </motion.a>
