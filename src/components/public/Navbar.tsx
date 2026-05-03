@@ -6,12 +6,12 @@ import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
-    { href: "#home", label: "Home" },
-    { href: "#about", label: "About" },
-    { href: "#services", label: "Services" },
-    { href: "#skills", label: "Skills" },
-    { href: "#values", label: "Values" },
-    { href: "#contact", label: "Contact" },
+    { href: "/", label: "Home" },
+    { href: "/about", label: "About" },
+    { href: "/services", label: "Services" },
+    { href: "/skills", label: "Skills" },
+    { href: "/values", label: "Values" },
+    { href: "/#contact", label: "Contact" },
 ];
 
 import { useTheme } from "@/components/theme-provider";

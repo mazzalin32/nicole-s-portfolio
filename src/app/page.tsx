@@ -12,29 +12,19 @@ export const dynamic = "force-dynamic"; // Always fetch fresh data
 
 async function getData() {
   try {
-    const [heroData, aboutData, valuesData, settingsData, servicesData, skillsData, platformsData] = await Promise.all([
+    const [heroData, settingsData] = await Promise.all([
       prisma.heroContent.findFirst(),
-      prisma.aboutContent.findFirst(),
-      prisma.value.findMany({ orderBy: { order: "asc" } }),
       prisma.siteSettings.findFirst({
         include: { socialLinks: { orderBy: { order: "asc" } } }
       }),
-      (prisma as any).service?.findMany({ orderBy: { order: "asc" }, include: { features: true } }) || [],
-      (prisma as any).skill?.findMany({ orderBy: { order: "asc" } }) || [],
-      (prisma as any).platform?.findMany({ orderBy: { order: "asc" } }) || [],
     ]);
 
-    return { heroData, aboutData, valuesData, settingsData, servicesData, skillsData, platformsData };
+    return { heroData, settingsData };
   } catch (error) {
     console.error("Failed to load homepage data from database:", error);
     return {
       heroData: null,
-      aboutData: null,
-      valuesData: [],
       settingsData: null,
-      servicesData: [],
-      skillsData: [],
-      platformsData: [],
     };
   }
 }
@@ -42,7 +32,7 @@ async function getData() {
 import WhatsAppButton from "@/components/public/WhatsAppButton";
 
 export default async function Home() {
-  const { heroData, aboutData, valuesData, settingsData, servicesData, skillsData, platformsData } = await getData();
+  const { heroData, settingsData } = await getData();
 
   return (
     <main>
@@ -57,18 +47,6 @@ export default async function Home() {
         roleTitle={heroData?.roleTitle || undefined}
         roleSubtitle={heroData?.roleSubtitle || undefined}
       />
-      <About
-        introLine={aboutData?.introLine || undefined}
-        headline={aboutData?.headline || undefined}
-        description={aboutData?.description || undefined}
-        ctaText={aboutData?.ctaText || undefined}
-        imageUrl={aboutData?.imageUrl || undefined}
-        secondaryImageUrl={aboutData?.secondaryImageUrl || undefined}
-        quote={aboutData?.quote || undefined}
-      />
-      <Services services={servicesData} />
-      <Skills skills={skillsData} platforms={platformsData} />
-      <Values values={valuesData} />
       <Contact
         contactEmail={settingsData?.contactEmail || undefined}
         phoneNumber={settingsData?.phoneNumber || undefined}

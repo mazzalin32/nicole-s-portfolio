@@ -50,12 +50,38 @@ Whether you need calendar management, process optimization, or executive-level a
                                 />
                             </div>
 
-                            {/* Overlapping Burgundy Card - Fixed z-index to be on top */}
-                            <div className="absolute -bottom-8 -right-8 lg:-right-16 w-48 lg:w-64 bg-[var(--color-burgundy)] p-6 text-white shadow-xl z-20">
-                                <p className="text-xs italic leading-relaxed" style={{ fontFamily: 'var(--font-script)' }}>
-                                    &ldquo;{quote}&rdquo;
-                                </p>
-                            </div>
+                            {/* Real Cloud Shape with flexible text overlay - Minimized size and brown/cream colors */}
+                            <motion.div
+                                animate={{
+                                    y: [0, -10, 0],
+                                    rotate: [0, 1, -1, 0]
+                                }}
+                                transition={{
+                                    duration: 7,
+                                    repeat: Infinity,
+                                    ease: "easeInOut"
+                                }}
+                                className="absolute -bottom-16 -right-6 lg:-right-10 w-56 md:w-64 lg:w-72 z-20"
+                            >
+                                {/* SVG Cloud Shape */}
+                                <svg
+                                    viewBox="0 0 340 200"
+                                    className="w-full h-auto drop-shadow-xl absolute inset-0"
+                                    preserveAspectRatio="none"
+                                >
+                                    <path
+                                        d="M60,140 C30,140 10,120 10,100 C10,80 25,65 45,62 C42,45 60,28 82,28 C95,18 115,12 135,12 C160,10 180,18 195,32 C210,20 235,18 255,28 C280,40 295,60 290,82 C310,88 330,100 330,120 C330,140 310,155 285,158 L75,158 C65,158 60,150 60,140 Z"
+                                        fill="var(--color-burgundy)"
+                                        fillOpacity="0.9"
+                                    />
+                                </svg>
+                                {/* Text overlay positioned in the cloud belly */}
+                                <div className="relative z-10 flex items-center justify-center px-8 py-10 md:px-10 md:py-12">
+                                    <p className="text-[10px] md:text-xs font-medium italic leading-relaxed text-center text-white select-none" style={{ fontFamily: 'var(--font-serif)' }}>
+                                        &ldquo;{quote}&rdquo;
+                                    </p>
+                                </div>
+                            </motion.div>
                         </div>
                     </motion.div>
 

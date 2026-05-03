@@ -266,7 +266,7 @@ export default function Contact({
                                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                                         required
                                         rows={5}
-                                        className="w-full px-4 py-3 border border-[var(--color-cream-dark)] focus:border-[var(--color-burgundy)] focus:outline-none transition-colors resize-none bg-[var(--color-card-bg)] text-[var(--color-text-dark)] placeholder:text-[var(--color-text-muted)]"
+                                        className="w-full px-4 py-3 border border-[var(--color-cream-dark)] focus:border-[var(--color-chocolate)] focus:outline-none transition-colors resize-none bg-[var(--color-card-bg)] text-[var(--color-text-dark)] placeholder:text-[var(--color-text-muted)]"
                                         placeholder="Tell me about your project or idea..."
                                     />
                                 </div>
