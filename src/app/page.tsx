@@ -1,3 +1,4 @@
+// Deployment trigger: multi-page structure
 import Navbar from "@/components/public/Navbar";
 import Hero from "@/components/public/Hero";
 import About from "@/components/public/About";
